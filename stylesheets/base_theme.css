@@ -3,7 +3,15 @@
 	If you create multiple themes, this file should have all the "critical" styling and 
 	
 */
-
+/* Include Luckiest Guy font */
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url('../fonts/LuckiestGuy.ttf') format('truetype');
+}
+/* This makes life alot easier */
+* {
+	box-sizing: border-box;
+}
 
 /* 	Take all the space available */
 html, body {
@@ -29,7 +37,7 @@ html, body {
 }
 
 .normal .startbutton {
-	font-family: Arial, Verdana, Tahoma;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
 	background-color: rgb(100,100,100);
 	border-color: rgb(200,200,200);
 	border-image: none;
@@ -49,6 +57,10 @@ html, body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+
 }
 
 .normal .startbutton:active {

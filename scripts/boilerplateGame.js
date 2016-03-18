@@ -66,20 +66,24 @@ JSBoilerplate.prototype.drawStartScreen = function() {
 
 	self.parent.append('<div class="startbutton">Start!</div>'); 
 	$('.startbutton').click(function(e) {
+		var elem = this; 
 		e.preventDefault();
 		// disable keylistener
 		$(document).off('keypress');
 
-		// fade button, start game, remove button
-		$(this).fadeOut(function() {
-			// focus parent div (needed, if you have keylistener in your game)
-			self.parent.focus();
-			// start the game 
-			self.start(); 
-			// remove start-button
-			this.remove();
+		// ugly hack to wait until the animation is completed.
+		setTimeout(function() {
+			// fade button, start game, remove button
+			$(elem).fadeOut(function() {
+				// focus parent div (needed, if you have keylistener in your game)
+				self.parent.focus();
+				// start the game 
+				self.start(); 
+				// remove start-button
+				$(elem).remove();
 
-		});
+			});
+		}, 200);
 	});
 	
 	$(document).keypress(function(e) {
