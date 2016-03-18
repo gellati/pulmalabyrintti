@@ -22,7 +22,9 @@ JSBoilerplate = function(options) {
 	self.submit = self.options.submit; 
 	self.sendAnswer = self.options.sendAnswer; 
 
-	// Create a container for the game
+	// Create a container for the game. 
+	// There needs to be a "gamearea"-container, which is positioned relative and takes the 
+	// full width and height of it's parent. Everything in the game must be placed inside "gamearea".
 	// Note: self.options.parent is the most outer container
 	// self.parent is the game itself and everything should be added there
 	// USE self.parent TO ADD THINGS IN YOUR GAME! 
