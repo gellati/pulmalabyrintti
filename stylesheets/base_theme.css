@@ -22,7 +22,7 @@ html, body {
 	background: #fff;
 	overflow: hidden;
 }
-
+/* The game container */
 .gamearea {
 	display:block;
 	position: relative;
@@ -36,6 +36,7 @@ html, body {
 	overflow: hidden;
 }
 
+/* Start button */
 .normal .startbutton {
 	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
 	background-color: rgb(100,100,100);
@@ -63,8 +64,152 @@ html, body {
 
 }
 
+/* Clicked start button */
 .normal .startbutton:active {
 	position: relative;
 	margin-top: 5px;
 	box-shadow: 0px 0px 0px rgba(255,255,255, 0);
+}
+
+/* 
+	Outer container for options 
+	This fills the bottom of the screen
+*/
+.optionsContainer {
+	display: block;
+	position: absolute; 
+	bottom: 0; 
+	left: 0;
+	right: 0;
+	width: 100%;
+	min-height: 25vmin;
+	max-height: 50vmin;
+	background: #666;
+	border-top: 3px solid #eee;
+	text-align: center;
+}
+
+/* 
+	Inner container for buttons. This expand as needed and makes it possible to 
+	align buttons in the middle
+*/
+.options {
+	display: inline-block;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+.option {
+	display: inline;
+	width: 18vmin;
+	height: 18vmin;
+	float:left;
+
+	margin-top: 2vmin;
+	margin-bottom: 2vmin;
+	margin-left: 1vmin;
+	margin-right: 1vmin;
+
+	background: #222;
+	color: #f1f1f1;
+
+	/* Align text to center */
+	text-align: center;
+	line-height: 18vmin; 
+
+	font-size: 8vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */
+}
+
+/* Selected option */
+.active {
+	background: #f1f1f1;
+	color: #222;
+}
+
+/*
+	Target value container
+*/
+.targetValue {
+	position: absolute;
+	top: 10vmin;
+	left: 50%;
+
+	margin-left: -12.5vmin;
+	width: 25vmin;
+	height: 25vmin;
+
+	line-height: 25vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+
+	/* RGB colors and opacity. 0 full opacity, 1 no opacity */
+	background: rgba(200,200,200, .8);
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */
+}
+
+/*
+	Current value container
+*/
+.currentValue {
+	position: absolute;
+	top: 40vmin;
+	left: 50%;
+
+	margin-left: -8.5vmin;
+	width: 17vmin;
+	height: 17vmin;
+
+	line-height: 17vmin;
+	text-align:center;
+	font-size: 8vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* RGB colors and opacity. 0 full opacity, 1 no opacity */
+	background: rgba(200,200,200, .2);	
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */
+}
+
+/* Show lifes */
+.lifes {
+	position: absolute;
+	right: 2vmin;
+	top: 2vmin;
+	width: 15vmin;
+	height: 15vmin;
+
+	line-height: 15vmin;
+	text-align:center;
+	font-size: 8vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
 }

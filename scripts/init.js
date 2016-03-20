@@ -21,16 +21,20 @@ function startGame() {
 		data: [					// array of questions/problems
 			// First question object
 			{
-				question: '1+1', 				// Question as a string
-				options: ['2', '3', '4', '5'], 	// OPTIONAL if there are multiple choices, you can use this. Each option is a string. 
-				correct: ['2']  				// Array of correct answers. as strings Multiple correct answers are allowed
+				question: '9', 				// Target number, as an equation or just a number
+				options: ['1', '2', '3', '4', '5', '6', '7'], 	// These will serve as usable numbers to form the target number 
+				correct: '9',  					// Correct answer (the target number). I changed this to String instead of an Array
+				operation: 'addition' ,			// Which operation addition, subtraction, division or multiplication
+				startValue: 0					// Where the user starts. Ssubtraction and division should have a big number. Multiplication should have 1
 			}, // first question object ends
 
 			// Second question object
 			{ 
 				question: '2+2', 
 				options: ['2', '3', '4', '5'], 
-				correct: ['4'] 
+				correct: '4',
+				operation: 'addition',
+				startValue: 0
 			}, // second question object ends
 		],
 		theme: 'normal',
@@ -39,13 +43,12 @@ function startGame() {
 		// Optional configurations
 		// Add as many you need in your game, these are just examples
 		lifes: 3, 			// How many tries?
-		nOfOptions: 4 		// How many options should be visible at the same time
-
+		time: 10			// Time to answer the question (find the target number)
 	}
 
 	// crate new instance of the game. 
 	// If you rename the JSBoilerplate in the game.js, you must rename it here too. 
-	var game = new JSBoilerplate(options); 
+	var game = new NumberComposition(options); 
 
 }
 

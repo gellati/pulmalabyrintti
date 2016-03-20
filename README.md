@@ -1,10 +1,10 @@
-# js-boilerplate
-This project is a starting point for Javascript based games used in ViLLE. The boilerplate is designed for the participants of **ViLLE Edugame Hackathon 2016**. 
+# Number composition -game
+This is a simple javascript game that works as an example in **ViLLE Edugame Hackathon 2016** and is the basis for theming competition. 
 
 To get started, clone this project and change the remote to use your own git account. 
 ```
-git clone https://github.com/changty/js-boilerplate.git
-cd js-boilerplate
+git clone https://github.com/changty/number-composition.git
+cd number-composition
 git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
 ```
 
@@ -13,21 +13,14 @@ Verify changes:
 git remote -v
 ```
 
-## The Flow 
-Coming soon
+## Game logic
+The player tries to get the target value shown on the play area using numbers given in options. There operation to combine numbers can be addition, subtraction, division or multiplication. That is defined separately in each problem in the dataset.
 
-## List of recommended libraries and assets 
-* [jQuery](https://jquery.com/) Famous Javascript library that makes for example DOM-manipulation a breeze. This boilerplate uses jQuery by default
-* [Underscore](http://underscorejs.org/) Provides tons of functions to make life easier
-* [PhaserJS](http://phaser.io/) Complete framework for HTML5 mobile and desktop game development
-* [HowlerJS](http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library) Library for handling audio
-* [Hammer.JS](http://hammerjs.github.io/) Handles touch events and gestures
-* [Kenney.nl](http://kenney.nl/)  Awesome assets for games, including vector graphics
-* [Animate.css](https://daneden.github.io/animate.css/) Polished simple CSS animations "Just-add-water" 
-* [Effeckt.css](http://h5bp.github.io/Effeckt.css/) Another animation/transition library. Tries to take the next step compared to animte.css. [Api](https://github.com/h5bp/Effeckt.css).
-* [FontAwesome](http://fontawesome.io/) Defacto icon library. Also take a look in Kenney-pack for gaming icons.
+If the player gets a correct answer, the answer is saved via "sendAnswer"-function and the player is presented with next problem or game over screen, if the player is out of questoins. 
 
-## Other great resources
-* [Flat UI colors](https://flatuicolors.com/) Nice color palette
-* [Flat UI color picker](http://www.flatuicolorpicker.com/) Even more great colors
-* [Google's material design colors](https://www.google.com/design/spec/style/color.html#color-color-palette) Shades of colors that go well together 
+In addition and multiplication, the player gets a wrong answer, if the combined value is bigger than the target value. In division and subtraction the player gets wrong answer, if the answer is smaller than the target value.
+
+
+## Good resources for learning CSS
+*[CSS3 Cheat sheet](http://www.lesliefranke.com/files/reference/csscheatsheet.html)
+*[W3Schools](http://www.w3schools.com/css/) Lots of examples  
