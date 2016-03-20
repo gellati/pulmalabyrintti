@@ -26,3 +26,8 @@ Coming soon
 * [Animate.css](https://daneden.github.io/animate.css/) Polished simple CSS animations "Just-add-water" 
 * [Effeckt.css](http://h5bp.github.io/Effeckt.css/) Another animation/transition library. Tries to take the next step compared to animte.css. [Api](https://github.com/h5bp/Effeckt.css).
 * [FontAwesome](http://fontawesome.io/) Defacto icon library. Also take a look in Kenney-pack for gaming icons.
+
+## Other great resources
+* [Flat UI colors](https://flatuicolors.com/) Nice color palette
+* [Flat UI color picker](http://www.flatuicolorpicker.com/) Even more great colors
+* [Google's material design colors](https://www.google.com/design/spec/style/color.html#color-color-palette) Shades of colors that go well together 
