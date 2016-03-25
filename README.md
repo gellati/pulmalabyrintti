@@ -13,9 +13,6 @@ Verify changes:
 git remote -v
 ```
 
-## The Flow 
-Coming soon
-
 ## List of recommended libraries and assets 
 * [jQuery](https://jquery.com/) Famous Javascript library that makes for example DOM-manipulation a breeze. This boilerplate uses jQuery by default
 * [Underscore](http://underscorejs.org/) Provides tons of functions to make life easier
@@ -31,3 +28,8 @@ Coming soon
 * [Flat UI colors](https://flatuicolors.com/) Nice color palette
 * [Flat UI color picker](http://www.flatuicolorpicker.com/) Even more great colors
 * [Google's material design colors](https://www.google.com/design/spec/style/color.html#color-color-palette) Shades of colors that go well together 
+
+## The Flow 
+Drawn with [Draw.io](http://draw.io) 
+![Alt text](/js-boilerplate.svg?raw=true "Flow chart")
+
