@@ -31,5 +31,6 @@ git remote -v
 
 ## The Flow 
 Drawn with [Draw.io](http://draw.io) 
-![Alt text](/js-boilerplate.svg?raw=true "Flow chart")
+
+![image](https://raw.githubusercontent.com/changty/js-boilerplate/master/js-boilerplate.svg)
 
