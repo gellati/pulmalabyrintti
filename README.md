@@ -3,9 +3,9 @@ This project is a starting point for Javascript based games used in ViLLE. The b
 
 To get started, clone this project and change the remote to use your own git account. 
 ```
-git clone https://github.com/changty/js-boilerplate.git
-cd js-boilerplate
-git remote set-url origin https://github.com/USERNAME/OTHERREPOSITORY.git
+git clone https://github.com/changty/js-boilerplate.git NEW_FOLDER_NAME
+cd NEW_FOLDER_NAME
+git remote set-url origin https://github.com/USERNAME/OTHER_REPOSITORY.git
 ```
 
 Verify changes: 
