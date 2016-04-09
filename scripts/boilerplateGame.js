@@ -44,6 +44,16 @@ JSBoilerplate = function(options) {
 	// Handle window resize
 	window.onresize = self.resize.bind(self); 
 
+	// Check if game has been detached every 1000ms
+	var detacherId = setInterval(function () {
+
+		if ($(self.parent).parents('body').length === 0) {
+			// Detach all key and mouse listeners here.
+			// Aslo clear all intervals and timeouts
+			clearInterval(detacherId);
+		}
+	}, 1000);
+
 
 	// Draw start screen 
 	self.drawStartScreen(); 
