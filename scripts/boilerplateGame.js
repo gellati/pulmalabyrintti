@@ -56,17 +56,42 @@ JSBoilerplate = function(options) {
 
 
 	// Draw start screen 
-	self.drawStartScreen(); 
+
+    self.drawStartScreen(); 
+
+
 }
 
 
 //Starting point for the game
 JSBoilerplate.prototype.start = function() {
-	var self = this; 
+    var self = this;
+    self.drawGameArea();
 
-	console.log("the game has begun!");
+    self.movement();
+
+    console.log("the game has begun!");
 
 }
+
+
+JSBoilerplate.prototype.drawGameArea = function(){
+
+    var self = this;
+
+    // the player figure
+    self.playerFigure = $('<div class="playerFigure"></div>');
+
+// positioning player figure in the middle of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.playerFigure.css({ top: height/2, left: width/2});
+    self.parent.append(self.playerFigure);
+
+    
+
+}
+
 
 // Draws the initial start screen, with a big start-button. 
 // Game starts only after user has decied to start the game. 
@@ -96,7 +121,7 @@ JSBoilerplate.prototype.drawStartScreen = function() {
 		}, 200);
 	});
 	
-	$(document).keypress(function(e) {
+	$(document).keypress(function(e) { // 13 == enter key
 		if(e.which === 13 || e.keyCode === 13) {
 			$('.startButton').click(); 
 		}
@@ -155,7 +180,9 @@ JSBoilerplate.prototype.resize = function() {
 
 	// Make sure that the game container fills the outer most container.
 	$(self.parent).width($(self.options.parent).width());
-	$(self.parent).height($(self.options.parent).height());
+    $(self.parent).height($(self.options.parent).height());
+
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -221,4 +248,44 @@ JSBoilerplate.prototype.isIn = function(array, item) {
 	}
 	
 	return false;
+}
+
+/*
+ var drawing_width = 100
+  var drawing_height = 60
+var draw = SVG('player').size(drawing_width, drawing_height)
+
+var player = draw.rect(40, 20).fill('#aa00aa');
+*/
+
+JSBoilerplate.prototype.movement = function(){
+    var self = this;
+
+    var x, y;
+    document.onkeydown = function(event){
+
+	switch(event.keyCode){
+	case 39: rightKey = true;
+	    x = $(".playerFigure").offset().left;
+	    $(".playerFigure").css({left: x + 5});
+	    console.log("right");
+	    break;
+	case 38: upKey = true;
+	    y = $(".playerFigure").offset().top;
+	    $(".playerFigure").css({top: y - 5});
+	    console.log("up");
+	    break;
+	case 37: leftKey = true;
+	    x = $(".playerFigure").offset().left;
+	    $(".playerFigure").css({left: x - 5});
+	    console.log("left");
+	    break;
+	case 40: downKey = true;
+	    y = $(".playerFigure").offset().top;
+	    $(".playerFigure").css({top: y + 5});
+	    console.log("down");
+	    break;
+	}
+
+    }
 }
