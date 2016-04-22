@@ -70,9 +70,16 @@ html, body {
 }
 
 .playerFigure{
-    width: 20px;
-    height: 40px;
     background-color: red;
     position: absolute;
+    width: 20px;
+    height: 40px;
+}
+
+.mockPosition{
+    position: absolute;
+    background-color: green;
+    width: 20px;
+    height: 40px;
 
 }

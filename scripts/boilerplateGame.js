@@ -9,8 +9,20 @@ JSBoilerplate = function(options) {
 	self.options = {
 		parent: $('body'),
 		url: '/',
-		theme: 'normal',
+	    theme: 'normal',	    
 	}
+
+    self.isGameOver = false;
+    self.currentQuestionIndex = 0;
+    self.canMove = true;
+    self.wrongGates = [];
+    self.correctGate = {};
+
+
+    self.topGate = {};
+    self.leftGate = {};
+    self.bottomGate = {};
+    self.rightGate = {};
 
 	// Extend default options with given options
 	// This uses jQuery ($)
@@ -57,8 +69,8 @@ JSBoilerplate = function(options) {
 
 	// Draw start screen 
 
-    self.drawStartScreen(); 
-
+//    self.drawStartScreen(); 
+    self.start();
 
 }
 
@@ -68,7 +80,9 @@ JSBoilerplate.prototype.start = function() {
     var self = this;
     self.drawGameArea();
 
-    self.movement();
+    self.keyBoardMovement();
+    self.checkCursorPosition();
+    self.checkCursorElement();
 
     console.log("the game has begun!");
 
@@ -84,9 +98,19 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
 // positioning player figure in the middle of the board
     var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
+    var height = $('.gamearea').height() + 100;
+    console.log("width " + width);
+    console.log("height " + height);
     self.playerFigure.css({ top: height/2, left: width/2});
     self.parent.append(self.playerFigure);
+
+    self.playerFigure.xpos = width/2;
+    self.playerFigure.ypos = height/2;
+
+    self.mockPosition = $('<div class="mockPosition"></div>');
+    self.mockPosition.css({ top: height + 100, left: width/3});
+    self.parent.append(self.mockPosition);
+
 
     
 
@@ -258,34 +282,125 @@ var draw = SVG('player').size(drawing_width, drawing_height)
 var player = draw.rect(40, 20).fill('#aa00aa');
 */
 
-JSBoilerplate.prototype.movement = function(){
+JSBoilerplate.prototype.keyBoardMovement = function(){
     var self = this;
 
     var x, y;
-    document.onkeydown = function(event){
-
-	switch(event.keyCode){
-	case 39: rightKey = true;
-	    x = $(".playerFigure").offset().left;
-	    $(".playerFigure").css({left: x + 5});
-	    console.log("right");
-	    break;
-	case 38: upKey = true;
-	    y = $(".playerFigure").offset().top;
-	    $(".playerFigure").css({top: y - 5});
-	    console.log("up");
-	    break;
-	case 37: leftKey = true;
-	    x = $(".playerFigure").offset().left;
-	    $(".playerFigure").css({left: x - 5});
-	    console.log("left");
-	    break;
-	case 40: downKey = true;
-	    y = $(".playerFigure").offset().top;
-	    $(".playerFigure").css({top: y + 5});
-	    console.log("down");
-	    break;
+    
+    if(self.canMove){
+	document.onkeydown = function(event){
+	    
+	    switch(event.keyCode){
+	    case 39: rightKey = true;
+		x = $(".playerFigure").offset().left;
+		$(".playerFigure").css({left: x + 5});
+		self.playerFigure.xpos += 5;
+		console.log("right");
+		break;
+	    case 38: upKey = true;
+		y = $(".playerFigure").offset().top;
+		$(".playerFigure").css({top: y - 5});
+		self.playerFigure.ypos -= 5;
+		console.log("up");
+		break;
+	    case 37: leftKey = true;
+		x = $(".playerFigure").offset().left;
+		$(".playerFigure").css({left: x - 5});
+		self.playerFigure.xpos -= 5;
+		console.log("left");
+		break;
+	    case 40: downKey = true;
+		y = $(".playerFigure").offset().top;
+		$(".playerFigure").css({top: y + 5});
+		self.playerFigure.ypos += 5;
+		console.log("down");
+		break;
+	    }	    
 	}
-
-    }
+    }    
 }
+
+
+JSBoilerplate.prototype.isCorrectGate = function(x, y){
+    
+    return true;
+}
+
+
+JSBoilerplate.prototype.isWrongGate = function(x, y){
+    return true;
+}
+
+
+JSBoilerplate.prototype.checkCursorElement = function(){
+    var self = this;
+
+    var x,y, name;
+    
+    $('.mockPosition').click(function(event){
+	    console.log(event.target.className);
+	    //	    console.log(event.target.pageX); // undefined
+
+	console.log($(this).css('left'), $(this).css('top')); //
+	console.log("offset " + $(this).offset().left + " " + $(this).offset().top); //
+
+	console.log("pos " + $(this).position().left + " " + $(this).position().top);
+
+
+	    name = event.target.className;
+	x = parseFloat($(this).css('top'));
+	y = parseFloat($(this).css('left'));
+	    console.log(x + " " + y);
+
+	console.log("checkCursorelement");
+
+
+//	$(document).on("mousemove", function(event){
+	    console.log("mousemove " + event.pageX + " " + event.pageY);
+//	});
+
+	x = event.pageX;
+	y = event.pageY;
+
+	self.moveElement(name, x, y);
+	
+	});
+
+}
+
+JSBoilerplate.prototype.moveElement = function(name, xpos, ypos){
+    console.log("moveElement " + xpos + " " + ypos);
+    $(".playerFigure").css({left: xpos, top: ypos});    
+}
+
+
+JSBoilerplate.prototype.mouseOverElement = function(){
+    var elemId = $('#mouseTracker').val();
+    console.log(elemId);
+}
+
+
+JSBoilerplate.prototype.checkCursorPosition = function(){
+    var self = this;
+
+    var x, y;
+/*
+    var e = event || window.event;
+
+    x = e.pageX;
+    y = e.pageY;
+
+    console.log(x + " " + y);
+*/
+    /*
+    if( self.isCorrectGate(self.playerFigure.xpos, self.playerFigure.ypos)){
+	x = 2;
+    }
+
+    if( self.isWrongGate(self.playerFigure.xpos, self.playerFigure.ypos)){
+	y = 2;
+    }
+    */
+}
+
+

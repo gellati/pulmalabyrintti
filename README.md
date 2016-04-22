@@ -1,4 +1,4 @@
-# js-boilerplate
+# pulmalabyrintti
 This project is a starting point for Javascript based games used in ViLLE. The boilerplate is designed for the participants of [ViLLE Edugame Hackathon 2016](http://villeteam.fi/en/hackathon). 
 
 To get started, clone this project and change the remote to use your own git account. 
