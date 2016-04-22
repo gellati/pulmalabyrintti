@@ -75,6 +75,7 @@ JSBoilerplate.prototype.start = function() {
 }
 
 
+
 JSBoilerplate.prototype.drawGameArea = function(){
 
     var self = this;
@@ -88,7 +89,82 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.playerFigure.css({ top: height/2, left: width/2});
     self.parent.append(self.playerFigure);
 
-    
+
+     // the wallLeft
+    self.wallLeft = $('<div class="wallLeft"></div>');
+
+// positioning wallLeft in the left side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.wallLeft.css({ top: height/50, left: width/150});
+    self.parent.append(self.wallLeft);
+
+     // the wallRight
+    self.wallRight = $('<div class="wallRight"></div>');
+
+// positioning wallRight in the right side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.wallRight.css({ top: height/50, right: width/150});
+    self.parent.append(self.wallRight);
+
+     // the wallTop
+    self.wallTop = $('<div class="wallTop"></div>');
+
+// positioning wallTop in the top of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.wallTop.css({ top: height/150, right: width/150});
+    self.parent.append(self.wallTop);
+
+     // the wallBottom
+    self.wallBottom = $('<div class="wallBottom"></div>');
+
+// positioning wallBottom in the bottom of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.wallBottom.css({ bottom: height/150, right: width/150});
+    self.parent.append(self.wallBottom);
+
+         // the gateLeft
+    self.gateLeft = $('<div class="gateLeft"></div>');
+
+// positioning gateLeft in the left side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.gateLeft.css({ bottom: height/2.5, left: width/150});
+    self.parent.append(self.gateLeft);
+
+     // the gateRight
+    self.gateRight = $('<div class="gateRight"></div>');
+
+// positioning gateRight in the right side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.gateRight.css({ bottom: height/2.5, right: width/150});
+    self.parent.append(self.gateRight);
+
+     // the gateTop
+    self.gateTop = $('<div class="gateTop"></div>');
+
+// positioning gateTop in the top of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+
+//var string = "name"
+//var string2 = "125%"
+
+    self.gateTop.css({ top: height/50, right: width/150});
+    self.parent.append(self.gateTop);
+
+    // the gateBottom
+    self.gateBottom = $('<div class="gateBottom"></div>');
+
+// positioning gateBottom in the bottom of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    self.gateBottom.css({ bottom: height/150, right: width/2.4});
+    self.parent.append(self.gateBottom);
 
 }
 
