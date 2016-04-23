@@ -183,7 +183,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.parent.append(self.gateBottom);
 
     // the answerLeft
-    self.answerLeft = $('<div class="answerLeft"></div>');
+    self.answerLeft = $('<div class="answerLeft clickable"></div>');
 
 // positioning answerLeft in the left side of the board
     var width = $('.gamearea').width();
@@ -192,7 +192,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.parent.append(self.answerLeft);
 
     // the answerRight
-    self.answerRight = $('<div class="answerRight"></div>');
+    self.answerRight = $('<div class="answerRight clickable"></div>');
 
 // positioning answerRight in the right side of the board
     var width = $('.gamearea').width();
@@ -201,7 +201,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.parent.append(self.answerRight);
 
     // the answerTop
-    self.answerTop = $('<div class="answerTop"></div>');
+    self.answerTop = $('<div class="answerTop clickable"></div>');
 
 // positioning answerTop in the top side of the board
     var width = $('.gamearea').width();
@@ -210,7 +210,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.parent.append(self.answerTop);
 
     // the answerBottom
-    self.answerBottom = $('<div class="answerBottom"></div>');
+    self.answerBottom = $('<div class="answerBottom clickable"></div>');
 
 // positioning answerBottom in the bottom side of the board
     var width = $('.gamearea').width();
@@ -226,6 +226,56 @@ JSBoilerplate.prototype.drawGameArea = function(){
     var height = $('.gamearea').height();
     //self.questionArea.css({ top: height/50, left: width/150});
     self.parent.append(self.questionArea);
+
+         // random number one (en saanut toimimaan)
+    //var randomnumber =Math.floor(Math.random()*11);
+
+
+        // the equation
+    self.equation = $('<span class="equation">7+10=?</span>');
+
+// positioning equation in the upper middle of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height(); 
+    //self.equation.css({ top: height/50, left: width/150});
+    self.parent.append(self.equation);
+
+     // the choiceLeft
+    self.choiceLeft = $('<span class="choiceLeft">17</span>');
+
+// positioning choiceLeft in the left of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.choiceLeft.css({ top: height/50, left: width/150});
+    self.parent.append(self.choiceLeft);
+
+    // the choiceRight
+    self.choiceRight = $('<span class="choiceRight">12</span>');
+
+// positioning choiceRight in the right of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.choiceRight.css({ top: height/50, left: width/150});
+    self.parent.append(self.choiceRight);
+
+        // the choiceTop
+    self.choiceTop = $('<span class="choiceTop">9</span>');
+
+// positioning choiceTop in the top of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.choiceTop.css({ top: height/50, left: width/150});
+    self.parent.append(self.choiceTop);
+
+            // the choiceBottom
+    self.choiceBottom = $('<span class="choiceBottom">71</span>');
+
+// positioning choiceBottom in the bottom of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.choiceBottom.css({ top: height/50, left: width/150});
+    self.parent.append(self.choiceBottom);
+
 
     self.playerFigure.xpos = width/2;
     self.playerFigure.ypos = height/2;

@@ -154,7 +154,7 @@ html, body {
 .wallTop{
 	width: 100%;
 	height: 10%;
-	background-color: white;
+	background-color: grey;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -237,6 +237,10 @@ html, body {
 	z-index: +2;
 }
 
+.answerLeft:hover{
+    border: 5px solid yellow;
+}
+
 .answerRight{
 	width: 8%;
 	height: 12%;
@@ -248,6 +252,10 @@ html, body {
 	/* bring your own prefixes */
 	transform: translate(0%, -50%);
 	z-index: +2;
+}
+
+.answerRight:hover{
+    border: 5px solid yellow;
 }
 
 .answerTop{
@@ -264,6 +272,10 @@ html, body {
 	z-index: +2;
 }
 
+.answerTop:hover{
+    border: 5px solid yellow;
+}
+
 .answerBottom{
 	width: 8%;
 	height: 10%;
@@ -277,6 +289,10 @@ html, body {
 	z-index: +2;
 }
 
+.answerBottom:hover{
+    border: 5px solid yellow;
+}
+
 .questionArea{
 	width: 26%;
 	height: 14%;
@@ -287,4 +303,129 @@ html, body {
 	right: 0;
 	transform: translate(-50%, 0%);
 	z-index: +2;
+}
+
+
+.equation{
+	position: absolute;
+	top: 27%;
+	left: 50%;
+	right: 0;
+	transform: translate(-50%, 0%);
+	z-index: +3;
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+.choiceLeft{
+	position: absolute;
+	top:60%;
+	bottom:0;
+	left: 12%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+	z-index: +3;
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+.choiceRight{
+	position: absolute;
+	top:60%;
+	bottom:0;
+	right:11%;
+	/* bring your own prefixes */
+	transform: translate(0%, -50%);
+	z-index: +3;
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+.choiceTop{
+	position: absolute;
+	position: fixed;
+	top: 7%;
+	left: 50%;
+	right: 0;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	z-index: +3;
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+.choiceBottom{
+	position: absolute;
+	right: 0;
+	bottom: 7%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	z-index: +3;
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
 }
