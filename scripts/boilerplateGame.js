@@ -65,7 +65,7 @@ JSBoilerplate = function(options) {
 
 //Starting point for the game
 JSBoilerplate.prototype.start = function() {
-    var self = this;
+    var self = this; 
     self.drawGameArea();
 
     self.movement();
@@ -96,7 +96,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning wallLeft in the left side of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.wallLeft.css({ top: height/50, left: width/150});
+    //self.wallLeft.css({ top: height/50, left: width/150});
     self.parent.append(self.wallLeft);
 
      // the wallRight
@@ -105,7 +105,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning wallRight in the right side of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.wallRight.css({ top: height/50, right: width/150});
+    //self.wallRight.css({ top: height/50, right: width/150});
     self.parent.append(self.wallRight);
 
      // the wallTop
@@ -114,7 +114,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning wallTop in the top of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.wallTop.css({ top: height/150, right: width/150});
+    //self.wallTop.css({ top: height/150, right: width/150});
     self.parent.append(self.wallTop);
 
      // the wallBottom
@@ -123,7 +123,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning wallBottom in the bottom of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.wallBottom.css({ bottom: height/150, right: width/150});
+    //self.wallBottom.css({ bottom: height/150, right: width/150});
     self.parent.append(self.wallBottom);
 
          // the gateLeft
@@ -132,7 +132,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning gateLeft in the left side of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.gateLeft.css({ bottom: height/2.5, left: width/150});
+    //self.gateLeft.css({ bottom: height/50, left: width/150});
     self.parent.append(self.gateLeft);
 
      // the gateRight
@@ -141,7 +141,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning gateRight in the right side of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.gateRight.css({ bottom: height/2.5, right: width/150});
+    //self.gateRight.css({ bottom: height/2.5, right: width/600});
     self.parent.append(self.gateRight);
 
      // the gateTop
@@ -152,9 +152,9 @@ JSBoilerplate.prototype.drawGameArea = function(){
     var height = $('.gamearea').height();
 
 //var string = "name"
-//var string2 = "125%"
+//var string2 = "100%"
 
-    self.gateTop.css({ top: height/50, right: width/150});
+   // self.gateTop.css({ top: height/string2, right: width/string2});
     self.parent.append(self.gateTop);
 
     // the gateBottom
@@ -163,10 +163,57 @@ JSBoilerplate.prototype.drawGameArea = function(){
 // positioning gateBottom in the bottom of the board
     var width = $('.gamearea').width();
     var height = $('.gamearea').height();
-    self.gateBottom.css({ bottom: height/150, right: width/2.4});
+    //self.gateBottom.css({ bottom: height/150, right: width/2.4});
     self.parent.append(self.gateBottom);
 
+    // the answerLeft
+    self.answerLeft = $('<div class="answerLeft"></div>');
+
+// positioning answerLeft in the left side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.answerLeft.css({ top: height/50, left: width/150});
+    self.parent.append(self.answerLeft);
+
+    // the answerRight
+    self.answerRight = $('<div class="answerRight"></div>');
+
+// positioning answerRight in the right side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.answerLeft.css({ top: height/50, left: width/150});
+    self.parent.append(self.answerRight);
+
+    // the answerTop
+    self.answerTop = $('<div class="answerTop"></div>');
+
+// positioning answerTop in the top side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.answerTop.css({ top: height/50, left: width/150});
+    self.parent.append(self.answerTop);
+
+    // the answerBottom
+    self.answerBottom = $('<div class="answerBottom"></div>');
+
+// positioning answerBottom in the bottom side of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.answerBottom.css({ top: height/50, left: width/150});
+    self.parent.append(self.answerBottom);
+
+    // the questionArea
+    self.questionArea = $('<div class="questionArea"></div>');
+
+// positioning questionArea in the upper middle of the board
+    var width = $('.gamearea').width();
+    var height = $('.gamearea').height();
+    //self.questionArea.css({ top: height/50, left: width/150});
+    self.parent.append(self.questionArea);
+
 }
+
+
 
 
 // Draws the initial start screen, with a big start-button. 
