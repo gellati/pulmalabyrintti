@@ -94,7 +94,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     var self = this;
 
     // the player figure
-    self.playerFigure = $('<div class="playerFigure"></div>');
+    self.playerFigure = $('<div class="playerFigure clickable"></div>');
 
 // positioning player figure in the middle of the board
     var width = $('.gamearea').width();
@@ -107,7 +107,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.playerFigure.xpos = width/2;
     self.playerFigure.ypos = height/2;
 
-    self.mockPosition = $('<div class="mockPosition"></div>');
+    self.mockPosition = $('<div class="mockPosition clickable"></div>');
     self.mockPosition.css({ top: height + 100, left: width/3});
     self.parent.append(self.mockPosition);
 
@@ -407,53 +407,67 @@ JSBoilerplate.prototype.moveElementInterval = function(startX, startY, endX, end
 
 JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
 
-var theThing = document.querySelector(".playerFigure");
-var container = document.querySelector(".gamearea");
+    var playerFigure = document.querySelector(".playerFigure");
+    var container = document.querySelector(".gamearea");
+    
+    container.addEventListener("click", getClickPosition, false);
+/*
+	console.log("clickable");
+	console.log($(e.currentTarget).attr('class'));
 
-container.addEventListener("click", getClickPosition, false);
-
-function getClickPosition(e) {
-	var parentPosition = getPosition(e.currentTarget);
-	var xPosition = e.clientX - parentPosition.x - (theThing.clientWidth / 2);
-	var yPosition = e.clientY - parentPosition.y - (theThing.clientHeight / 2);
+	    console.log("player or mock");
+*/
 	
-	theThing.style.left = xPosition + "px";
-    theThing.style.top = yPosition + "px";
-    theThing.className += " movingFigure";
-}
 
-// Helper function to get an element's exact position
-function getPosition(el) {
-  var xPos = 0;
-  var yPos = 0;
-
-  while (el) {
-    if (el.tagName == "BODY") {
-      // deal with browser quirks with body/window/document and page scroll
-      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-      var yScroll = el.scrollTop || document.documentElement.scrollTop;
-
-      xPos += (el.offsetLeft - xScroll + el.clientLeft);
-      yPos += (el.offsetTop - yScroll + el.clientTop);
-    } else {
-      // for all other non-BODY elements
-      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+//    });
+    function getClickPosition(e) {
+	$(container).on('click', '.clickable', function(e) {
+	    //	    if($(e.currentTarget).hasClass('clickable')){
+//	    console.log($(this).);
+		var parentPosition = getPosition(e.currentTarget);
+		var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
+		var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
+		console.log("getClickPosition " + xPosition + " " + yPosition);
+		playerFigure.style.left = xPosition + "px";
+		playerFigure.style.top = yPosition + "px";
+		playerFigure.className += " movingFigure";
+//	    }
+	});
+	
     }
+    // Helper function to get an element's exact position
+    function getPosition(el) {
+	var xPos = 0;
+	var yPos = 0;
 
-    el = el.offsetParent;
-  }
-  return {
-    x: xPos,
-    y: yPos
-  };
-}
+	
 
+	    while (el) {
+		if (el.tagName == "BODY") {
+		//	    if (el.className == "mockPosition") {
 
+		// deal with browser quirks with body/window/document and page scroll
+		var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+		var yScroll = el.scrollTop || document.documentElement.scrollTop;
+		
+		xPos += (el.offsetLeft - xScroll + el.clientLeft);
+		yPos += (el.offsetTop - yScroll + el.clientTop);
 
-
-
-
+	    }
+	    else {
+		// for all other non-BODY elements
+		xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+		yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+	    }	    
+	    el = el.offsetParent;
+    }
+    return {
+	    x: xPos,
+	    y: yPos
+	};
+    }
+    
+    
 }
 
 
