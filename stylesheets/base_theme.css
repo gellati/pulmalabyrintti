@@ -79,18 +79,6 @@ html, body {
 
 }
 
-.mockPosition{
-    position: absolute;
-    background-color: green;
-    width: 20px;
-    height: 40px;
-
-}
-
-.mockPosition:hover{
-    border: 1px solid yellow;
-}
-
 
 @keyframes roll{
     0%{
@@ -231,14 +219,9 @@ html, body {
 	position: absolute;
 	top:50%;
 	bottom:0;
-	left: 12%;
+	left: 10%;
 	/* bring your own prefixes */
 	transform: translate(-50%, -50%);
-	z-index: +2;
-}
-
-.answerLeft:hover{
-    border: 5px solid yellow;
 }
 
 .answerRight{
@@ -248,14 +231,9 @@ html, body {
 	position: absolute;
 	top:50%;
 	bottom:0;
-	right:8%;
+	right:6%;
 	/* bring your own prefixes */
 	transform: translate(0%, -50%);
-	z-index: +2;
-}
-
-.answerRight:hover{
-    border: 5px solid yellow;
 }
 
 .answerTop{
@@ -264,16 +242,11 @@ html, body {
 	background-color: orange;
 	position: absolute;
 	position: fixed;
-	top: 12%;
+	top: 10%;
 	left: 50%;
 	right: 0;
 	/* bring your own prefixes */
 	transform: translate(-50%, 0%);
-	z-index: +2;
-}
-
-.answerTop:hover{
-    border: 5px solid yellow;
 }
 
 .answerBottom{
@@ -282,16 +255,13 @@ html, body {
 	background-color: orange;
 	position: absolute;
 	right: 0;
-	bottom: 12%;
+	bottom: 10%;
 	left: 50%;
 	/* bring your own prefixes */
 	transform: translate(-50%, 0%);
-	z-index: +2;
+	position: absolute;
 }
 
-.answerBottom:hover{
-    border: 5px solid yellow;
-}
 
 .questionArea{
 	width: 26%;
@@ -304,6 +274,9 @@ html, body {
 	transform: translate(-50%, 0%);
 	z-index: +2;
 }
+
+
+
 
 
 .equation{
@@ -330,14 +303,8 @@ html, body {
 	                                not supported by any browser */ 
 }
 
-.choiceLeft{
-	position: absolute;
-	top:60%;
-	bottom:0;
-	left: 12%;
-	/* bring your own prefixes */
-	transform: translate(-50%, -50%);
-	z-index: +3;
+
+.clickable{
 	/* for text */
 	line-height: 20vmin;
 	text-align:center;
@@ -355,77 +322,7 @@ html, body {
 	                                not supported by any browser */ 
 }
 
-.choiceRight{
-	position: absolute;
-	top:60%;
-	bottom:0;
-	right:11%;
-	/* bring your own prefixes */
-	transform: translate(0%, -50%);
-	z-index: +3;
-	/* for text */
-	line-height: 20vmin;
-	text-align:center;
-	font-size: 10vmin;
-	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
-	color: #f1f1f1;
 
-	/* Prevent selecting text inside container */
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none;   /* Chrome/Safari/Opera */
-	-khtml-user-select: none;    /* Konqueror */
-	-moz-user-select: none;      /* Firefox */
-	-ms-user-select: none;       /* IE/Edge */
-	user-select: none;           /* non-prefixed version, currently
-	                                not supported by any browser */ 
-}
-
-.choiceTop{
-	position: absolute;
-	position: fixed;
-	top: 7%;
-	left: 50%;
-	right: 0;
-	/* bring your own prefixes */
-	transform: translate(-50%, 0%);
-	z-index: +3;
-	/* for text */
-	line-height: 20vmin;
-	text-align:center;
-	font-size: 10vmin;
-	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
-	color: #f1f1f1;
-
-	/* Prevent selecting text inside container */
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none;   /* Chrome/Safari/Opera */
-	-khtml-user-select: none;    /* Konqueror */
-	-moz-user-select: none;      /* Firefox */
-	-ms-user-select: none;       /* IE/Edge */
-	user-select: none;           /* non-prefixed version, currently
-	                                not supported by any browser */ 
-}
-
-.choiceBottom{
-	position: absolute;
-	right: 0;
-	bottom: 7%;
-	left: 50%;
-	/* bring your own prefixes */
-	transform: translate(-50%, 0%);
-	z-index: +3;
-	line-height: 20vmin;
-	text-align:center;
-	font-size: 10vmin;
-	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
-	color: #f1f1f1;
-
-	/* Prevent selecting text inside container */
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none;   /* Chrome/Safari/Opera */
-	-khtml-user-select: none;    /* Konqueror */
-	-moz-user-select: none;      /* Firefox */
-	-ms-user-select: none;       /* IE/Edge */
-	user-select: none;           /* non-prefixed version, currently
-	                                not supported by any browser */ 
+.clickable:hover{
+    border: 5px solid yellow;
 }

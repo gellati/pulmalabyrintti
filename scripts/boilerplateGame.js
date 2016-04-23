@@ -94,197 +94,139 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
     var self = this;
 
+
+
+//    var height = $(window).height();
+//    var width = $(window).width();
+    var height = $(document).height();
+    var width = $(document).width();
+
+    // no work, does not give height
+    //    var width = $('.gamearea').width();
+    //    var height = $('.gamearea').height();
+
+
+    
     // the player figure
     self.playerFigure = $('<div class="playerFigure clickable"></div>');
 
 // positioning player figure in the middle of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height() + 100;
     console.log("width " + width);
     console.log("height " + height);
+
     self.playerFigure.css({ top: height/2, left: width/2});
     self.parent.append(self.playerFigure);
-
-
-     // the wallLeft
-    self.wallLeft = $('<div class="wallLeft"></div>');
-
-// positioning wallLeft in the left side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.wallLeft.css({ top: height/50, left: width/150});
-    self.parent.append(self.wallLeft);
-
-     // the wallRight
-    self.wallRight = $('<div class="wallRight"></div>');
-
-// positioning wallRight in the right side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.wallRight.css({ top: height/50, right: width/150});
-    self.parent.append(self.wallRight);
-
-     // the wallTop
-    self.wallTop = $('<div class="wallTop"></div>');
-
-// positioning wallTop in the top of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.wallTop.css({ top: height/150, right: width/150});
-    self.parent.append(self.wallTop);
-
-     // the wallBottom
-    self.wallBottom = $('<div class="wallBottom"></div>');
-
-// positioning wallBottom in the bottom of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.wallBottom.css({ bottom: height/150, right: width/150});
-    self.parent.append(self.wallBottom);
-
-         // the gateLeft
-    self.gateLeft = $('<div class="gateLeft"></div>');
-
-// positioning gateLeft in the left side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.gateLeft.css({ bottom: height/50, left: width/150});
-    self.parent.append(self.gateLeft);
-
-     // the gateRight
-    self.gateRight = $('<div class="gateRight"></div>');
-
-// positioning gateRight in the right side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.gateRight.css({ bottom: height/2.5, right: width/600});
-    self.parent.append(self.gateRight);
-
-     // the gateTop
-    self.gateTop = $('<div class="gateTop"></div>');
-
-// positioning gateTop in the top of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-
-//var string = "name"
-//var string2 = "100%"
-
-   // self.gateTop.css({ top: height/string2, right: width/string2});
-    self.parent.append(self.gateTop);
-
-    // the gateBottom
-    self.gateBottom = $('<div class="gateBottom"></div>');
-
-// positioning gateBottom in the bottom of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.gateBottom.css({ bottom: height/150, right: width/2.4});
-    self.parent.append(self.gateBottom);
-
-    // the answerLeft
-    self.answerLeft = $('<div class="answerLeft clickable"></div>');
-
-// positioning answerLeft in the left side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.answerLeft.css({ top: height/50, left: width/150});
-    self.parent.append(self.answerLeft);
-
-    // the answerRight
-    self.answerRight = $('<div class="answerRight clickable"></div>');
-
-// positioning answerRight in the right side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.answerLeft.css({ top: height/50, left: width/150});
-    self.parent.append(self.answerRight);
-
-    // the answerTop
-    self.answerTop = $('<div class="answerTop clickable"></div>');
-
-// positioning answerTop in the top side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.answerTop.css({ top: height/50, left: width/150});
-    self.parent.append(self.answerTop);
-
-    // the answerBottom
-    self.answerBottom = $('<div class="answerBottom clickable"></div>');
-
-// positioning answerBottom in the bottom side of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.answerBottom.css({ top: height/50, left: width/150});
-    self.parent.append(self.answerBottom);
-
-    // the questionArea
-    self.questionArea = $('<div class="questionArea"></div>');
-
-// positioning questionArea in the upper middle of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.questionArea.css({ top: height/50, left: width/150});
-    self.parent.append(self.questionArea);
-
-         // random number one (en saanut toimimaan)
-    //var randomnumber =Math.floor(Math.random()*11);
-
-
-        // the equation
-    self.equation = $('<span class="equation">7+10=?</span>');
-
-// positioning equation in the upper middle of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height(); 
-    //self.equation.css({ top: height/50, left: width/150});
-    self.parent.append(self.equation);
-
-     // the choiceLeft
-    self.choiceLeft = $('<span class="choiceLeft">17</span>');
-
-// positioning choiceLeft in the left of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.choiceLeft.css({ top: height/50, left: width/150});
-    self.parent.append(self.choiceLeft);
-
-    // the choiceRight
-    self.choiceRight = $('<span class="choiceRight">12</span>');
-
-// positioning choiceRight in the right of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.choiceRight.css({ top: height/50, left: width/150});
-    self.parent.append(self.choiceRight);
-
-        // the choiceTop
-    self.choiceTop = $('<span class="choiceTop">9</span>');
-
-// positioning choiceTop in the top of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.choiceTop.css({ top: height/50, left: width/150});
-    self.parent.append(self.choiceTop);
-
-            // the choiceBottom
-    self.choiceBottom = $('<span class="choiceBottom">71</span>');
-
-// positioning choiceBottom in the bottom of the board
-    var width = $('.gamearea').width();
-    var height = $('.gamearea').height();
-    //self.choiceBottom.css({ top: height/50, left: width/150});
-    self.parent.append(self.choiceBottom);
-
 
     self.playerFigure.xpos = width/2;
     self.playerFigure.ypos = height/2;
 
-    self.mockPosition = $('<div class="mockPosition clickable"></div>');
-    self.mockPosition.css({ top: height + 100, left: width/3});
-    self.parent.append(self.mockPosition);
+    
+     // the wallLeft, positioning wallLeft in the left side of the board
+    self.wallLeft = $('<div class="wallLeft"></div>');
+    self.parent.append(self.wallLeft);
+
+     // the wallRight, positioning wallRight in the right side of the board
+    self.wallRight = $('<div class="wallRight"></div>');
+    self.parent.append(self.wallRight);
+
+     // the wallTop, positioning to the top of the board
+    self.wallTop = $('<div class="wallTop"></div>');
+    self.parent.append(self.wallTop);
+
+     // the wallBottom, positioning wallBottom in the bottom of the board
+    self.wallBottom = $('<div class="wallBottom"></div>');
+    self.parent.append(self.wallBottom);
+
+         // the gateLeft, positioning gateLeft in the left side of the board
+    self.gateLeft = $('<div class="gateLeft"></div>');
+    self.parent.append(self.gateLeft);
+
+     // the gateRight, positioning gateRight in the right side of the board
+    self.gateRight = $('<div class="gateRight"></div>');
+    self.parent.append(self.gateRight);
+
+     // the gateTop, positioning gateTop in the top of the board
+    self.gateTop = $('<div class="gateTop"></div>');
+    self.parent.append(self.gateTop);
+
+    // the gateBottom, positioning gateBottom in the bottom of the board
+    self.gateBottom = $('<div class="gateBottom"></div>');
+    self.parent.append(self.gateBottom);
 
 
+    // the questionArea, positioning questionArea in the upper middle of the board
+    self.questionArea = $('<div class="questionArea"></div>');
+    self.parent.append(self.questionArea);
+
+    var a, b, c;
+    var randomNumber1 = Math.floor(Math.random() * 11);
+    var randomNumber2 = Math.floor(Math.random() * 11);
+    
+    a = randomNumber1 + randomNumber2;
+    b = a;
+    c = a;
+
+
+    while(b === a ){
+	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while(c === a || c === b){
+	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    console.log(a + "," + b + "," + c);
+/**/
+
+    var answers = [a, b, c];
+    answers = self.shuffle(answers);
+    
+    console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
+
+    // the equation, positioning equation in the upper middle of the board
+
+    self.equation = $('<div class="equation">' + randomNumber1 + '+' + randomNumber2 +'=?</div>');
+    self.parent.append(self.equation);
+
+    // the answerLeft, positioning answerLeft in the left side of the board
+    self.answerLeft = $('<div class="answerLeft clickable" data-value="' + answers[0] + '">' + answers[0] + '</div>');
+    self.parent.append(self.answerLeft);
+
+    // the answerRight, positioning answerRight in the right side of the board
+    self.answerRight = $('<div class="answerRight clickable" data-value="' + answers[1] + '">' + answers[1] + '</div>');
+    self.parent.append(self.answerRight);
+
+    // the answerTop, positioning answerTop in the top side of the board
+    self.answerTop = $('<div class="answerTop clickable" data-value="' + answers[2] + '">' + answers[2] + '</div>');
+    self.parent.append(self.answerTop);
+
+
+
+
+    // the answerBottom, positioning answerBottom in the bottom side of the board
+    self.answerBottom = $('<div class="answerBottom clickable" data-value="71">^</div>');
+    self.parent.append(self.answerBottom);
+
+
+
+
+    /*
+     // the choiceLeft, positioning choiceLeft in the left of the board
+    self.choiceLeft = $('<div class="choiceLeft">17</div>');
+    self.parent.append(self.choiceLeft);
+
+    // the choiceRight, positioning choiceRight in the right of the board
+    self.choiceRight = $('<div class="choiceRight">12</div>');
+    self.parent.append(self.choiceRight);
+
+    // the choiceTop, positioning choiceTop in the top of the board
+    self.choiceTop = $('<div class="choiceTop">9</div>');
+    self.parent.append(self.choiceTop);
+
+    // the choiceBottom, positioning choiceBottom in the bottom of the board
+    self.choiceBottom = $('<div class="choiceBottom">71</div>');
+    self.parent.append(self.choiceBottom);
+*/
 
 }
 
@@ -511,7 +453,7 @@ JSBoilerplate.prototype.checkCursorElement = function(){
 
     var startX, startY, endX, endY, name;
     
-    $('.mockPosition').click(function(event){
+    $('.clickable').click(function(event){
 	    console.log(event.target.className);
 	    //	    console.log(event.target.pageX); // undefined
 
@@ -519,7 +461,6 @@ JSBoilerplate.prototype.checkCursorElement = function(){
 	console.log("offset " + $(this).offset().left + " " + $(this).offset().top); //
 
 	console.log("pos " + $(this).position().left + " " + $(this).position().top);
-
 
 	    name = event.target.className;
 	endX = parseFloat($(this).css('top'));
@@ -578,6 +519,30 @@ JSBoilerplate.prototype.moveElementInterval = function(startX, startY, endX, end
     }, 30);
 }
 
+JSBoilerplate.prototype.shuffle = function(array){
+
+    let counter = array.length;
+    
+    // While there are elements in the array
+    while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+	
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        let temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+    
+    return array;
+    
+}
+
+
+
 
 JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
 
@@ -613,12 +578,8 @@ JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY)
     function getPosition(el) {
 	var xPos = 0;
 	var yPos = 0;
-
-	
-
 	    while (el) {
 		if (el.tagName == "BODY") {
-		//	    if (el.className == "mockPosition") {
 
 		// deal with browser quirks with body/window/document and page scroll
 		var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
