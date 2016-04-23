@@ -83,8 +83,9 @@ JSBoilerplate.prototype.start = function() {
     self.clickListener();
 
 //    container.addEventListener("click", getClickPosition, false);    
-    self.checkCursorPosition();
-    self.checkCursorElement();
+
+//    self.checkCursorPosition();
+//    self.checkCursorElement();
 
     console.log("the game has begun!");
 
@@ -108,7 +109,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
     
     // the player figure
-    self.playerFigure = $('<div class="playerFigure clickable"></div>');
+    self.playerFigure = $('<div class="playerFigure" id="playerFigure"></div>');
 
 // positioning player figure in the middle of the board
     console.log("width " + width);
@@ -298,7 +299,7 @@ JSBoilerplate.prototype.clearGame = function(){
 
 JSBoilerplate.prototype.finishGame = function(){
     var self = this;
-    $("document").delay(1000);
+    $("document").delay(3000);
     
     
 
@@ -654,14 +655,29 @@ JSBoilerplate.prototype.clickListener = function(){
 	playerFigure.style.top = yPosition + "px";
 	playerFigure.className += " movingFigure";
 	targetElement = this; //.currentTarget;
-	
+
+
 	if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
 	    questionArea.className += " correctAnswer";
-	    console.log("correct");
-	    self.finishGame();
-	    self.clearGame();	    
-	    self.newGame();
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
 
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+	    
+
+
+	    
 	}else{
 	    
 	    

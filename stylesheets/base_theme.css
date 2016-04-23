@@ -77,7 +77,24 @@ html, body {
     transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
     top .5s cubic-bezier(.42,-0.3,.78,1.25);
     z-index: 10;
+
 }
+
+.correctAnswer{
+  -moz-animation-duration: 5s;
+  -moz-animation-delay: 5s;
+  -moz-animation-iteration-count: infinite;
+
+  -webkit-animation-duration: 5s;
+  -webkit-animation-delay: 5s;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-duration: 5s;
+  animation-delay: 5s;
+  animation-iteration-count: infinite;
+}
+
+
 
 
 @keyframes roll{
