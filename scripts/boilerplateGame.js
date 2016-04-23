@@ -80,8 +80,9 @@ JSBoilerplate.prototype.start = function() {
     var self = this; 
     self.drawGameArea();
     self.newGame();
+    self.clickListener();
 
-    
+//    container.addEventListener("click", getClickPosition, false);    
     self.checkCursorPosition();
     self.checkCursorElement();
 
@@ -175,7 +176,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.parent.append(self.answerTop);
 
     // the answerBottom, positioning answerBottom in the bottom side of the board
-    self.answerBottom = $('<div class="answerBottom clickable" data-value="71">^</div>');
+    self.answerBottom = $('<div class="answerBottom clickable"></div>');
     self.parent.append(self.answerBottom);
 
 
@@ -203,13 +204,14 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
 JSBoilerplate.prototype.newGame = function(){
     var self = this;
-    var a, b, c;
+    var a, b, c, d;
     var randomNumber1 = Math.floor(Math.random() * 11);
     var randomNumber2 = Math.floor(Math.random() * 11);
     
     a = randomNumber1 + randomNumber2;
     b = a;
     c = a;
+    d = a
 
 
     while(b === a ){
@@ -220,10 +222,15 @@ JSBoilerplate.prototype.newGame = function(){
 	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
 
-    console.log(a + "," + b + "," + c);
+    while(d === a || d === b || d === c){
+	d = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    
+    console.log(a + "," + b + "," + c + "," + d);
 /**/
 
-    var answers = [a, b, c];
+    var answers = [a, b, c, d];
     answers = self.shuffle(answers);
     
     console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
@@ -245,12 +252,17 @@ JSBoilerplate.prototype.newGame = function(){
     var answerTop = document.querySelector('.answerTop');
     answerTop.setAttribute('data-value', answers[2]);
     answerTop.innerHTML = answers[2].toString();
+
+    var answerBottom = document.querySelector('.answerBottom');
+    answerBottom.setAttribute('data-value', answers[3]);
+    answerBottom.innerHTML = answers[3].toString();
     
 }
 
 
 JSBoilerplate.prototype.clearGame = function(){
     var self = this;
+    console.log("clearGame");
 
     var questionArea = document.querySelector('.questionArea');
     questionArea.removeAttribute('data-value');
@@ -260,6 +272,7 @@ JSBoilerplate.prototype.clearGame = function(){
     var answerLeft = document.querySelector('.answerLeft');
     answerLeft.removeAttribute('data-value');
     answerLeft.innerHTML = '';
+
 
     var answerRight = document.querySelector('.answerRight');
     answerRight.removeAttribute('data-value');
@@ -273,16 +286,22 @@ JSBoilerplate.prototype.clearGame = function(){
     answerBottom.removeAttribute('data-value');
     answerBottom.innerHTML = '';
 
+    
     var height = $(document).height();
     var width = $(document).width();
     
-    playerFigures = $('.playerFigure');
-    playerFigures.removeClass('movingFigure');
-    playerFigures.css({ top: height/2, left: width/2});
+//    playerFigures = $('.playerFigure');
+    self.playerFigure.removeClass('movingFigure');
+    self.playerFigure.css({ top: height/2, left: width/2});    
+    
+}
 
-
+JSBoilerplate.prototype.finishGame = function(){
+    var self = this;
+    $("document").delay(1000);
     
     
+
 }
 
 
@@ -613,17 +632,82 @@ JSBoilerplate.prototype.shuffle = function(array){
     
 }
 
+JSBoilerplate.prototype.clickListener = function(){
+    var self = this;
+    //    function getClickPosition(e) {
+    var container = document.querySelector(".gamearea");    
 
+    var playerFigure = document.querySelector(".playerFigure");
+
+    var questionArea = document.querySelector(".questionArea");
+    var targetElement;
+    
+    $(container).on('click', '.clickable', function(e) {
+	
+	//var parentPosition = getPosition(e.currentTarget);
+	var parentPosition = getPosition(container.currentTarget);
+	
+	var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
+	var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
+	console.log("getClickPosition " + xPosition + " " + yPosition);
+	playerFigure.style.left = xPosition + "px";
+	playerFigure.style.top = yPosition + "px";
+	playerFigure.className += " movingFigure";
+	targetElement = this; //.currentTarget;
+	
+	if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    console.log("correct");
+	    self.finishGame();
+	    self.clearGame();	    
+	    self.newGame();
+
+	}else{
+	    
+	    
+	    //	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+	    questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+	    console.log("wrong");		
+	}
+	
+    });
+	
+//}
+    // Helper function to get an element's exact position
+    function getPosition(el) {
+	var xPos = 0;
+	var yPos = 0;
+	while (el) {
+	    if (el.tagName == "BODY") {
+		
+		// deal with browser quirks with body/window/document and page scroll
+		var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+		var yScroll = el.scrollTop || document.documentElement.scrollTop;
+		
+		xPos += (el.offsetLeft - xScroll + el.clientLeft);
+		yPos += (el.offsetTop - yScroll + el.clientTop);
+		
+	    }
+	    else {
+		// for all other non-BODY elements
+		xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+		yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+	    }	    
+	    el = el.offsetParent;
+	}
+    return {
+	x: xPos,
+	y: yPos
+    };
+    }
+}
 
 
 JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
     self = this;
-    var playerFigure = document.querySelector(".playerFigure");
-    var container = document.querySelector(".gamearea");
-    var questionArea = document.querySelector(".questionArea");
-    var targetElement;
+
     
-    container.addEventListener("click", getClickPosition, false);
+
 /*
 	console.log("clickable");
 	console.log($(e.currentTarget).attr('class'));
@@ -633,65 +717,9 @@ JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY)
 	
 
 //    });
-    function getClickPosition(e) {
-	
 
-	$(container).on('click', '.clickable', function(e) {
 
-	    //var parentPosition = getPosition(e.currentTarget);
-	    var parentPosition = getPosition(container.currentTarget);
 
-	    var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = e.currentTarget;
-
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-		questionArea.className += " correctAnswer";
-		console.log("correct");
-		self.clearGame();
-		
-		self.newGame();
-	    }
-	    
-	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	});
-	
-    }
-    // Helper function to get an element's exact position
-    function getPosition(el) {
-	var xPos = 0;
-	var yPos = 0;
-	    while (el) {
-		if (el.tagName == "BODY") {
-
-		// deal with browser quirks with body/window/document and page scroll
-		var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-		var yScroll = el.scrollTop || document.documentElement.scrollTop;
-		
-		xPos += (el.offsetLeft - xScroll + el.clientLeft);
-		yPos += (el.offsetTop - yScroll + el.clientTop);
-
-	    }
-	    else {
-		// for all other non-BODY elements
-		xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-		yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-	    }	    
-	    el = el.offsetParent;
-    }
-    return {
-	    x: xPos,
-	    y: yPos
-	};
-    }
     
     
 }
@@ -701,35 +729,5 @@ JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY)
 
 
 
-
-
-JSBoilerplate.prototype.mouseOverElement = function(){
-    var elemId = $('#mouseTracker').val();
-    console.log(elemId);
-}
-
-
-JSBoilerplate.prototype.checkCursorPosition = function(){
-    var self = this;
-
-    var x, y;
-/*
-    var e = event || window.event;
-
-    x = e.pageX;
-    y = e.pageY;
-
-    console.log(x + " " + y);
-*/
-    /*
-    if( self.isCorrectGate(self.playerFigure.xpos, self.playerFigure.ypos)){
-	x = 2;
-    }
-
-    if( self.isWrongGate(self.playerFigure.xpos, self.playerFigure.ypos)){
-	y = 2;
-    }
-    */
-}
 
 
