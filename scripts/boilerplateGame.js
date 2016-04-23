@@ -335,7 +335,7 @@ JSBoilerplate.prototype.isWrongGate = function(x, y){
 JSBoilerplate.prototype.checkCursorElement = function(){
     var self = this;
 
-    var x,y, name;
+    var startX, startY, endX, endY, name;
     
     $('.mockPosition').click(function(event){
 	    console.log(event.target.className);
@@ -348,30 +348,119 @@ JSBoilerplate.prototype.checkCursorElement = function(){
 
 
 	    name = event.target.className;
-	x = parseFloat($(this).css('top'));
-	y = parseFloat($(this).css('left'));
-	    console.log(x + " " + y);
+	endX = parseFloat($(this).css('top'));
+	endY = parseFloat($(this).css('left'));
+	    console.log(endX + " " + endY);
 
 	console.log("checkCursorelement");
 
 
 //	$(document).on("mousemove", function(event){
 	    console.log("mousemove " + event.pageX + " " + event.pageY);
-//	});
+	//	});
 
-	x = event.pageX;
-	y = event.pageY;
-
-	self.moveElement(name, x, y);
+	startX = $(".playerFigure").offset().left;
+	startY = $(".playerFigure").offset().top;
 	
-	});
+	startX = parseFloat($(".playerFigure").css('left'));
+	startY = parseFloat($(".playerFigure").css('top'));
+
+	endX = event.pageX;
+	endY = event.pageY;
+
+//	self.moveElementAnimation(startX, startY, endX, endY);
+//	self.moveElementCss(name, endX, endY);	
+//	self.moveElementInterval(startX, startY, endX, endY);
+	self.moveElementKirupa(startX, startY, endX, endY);
+    });
 
 }
 
-JSBoilerplate.prototype.moveElement = function(name, xpos, ypos){
+JSBoilerplate.prototype.moveElementAnimation = function(startX, startY, endX, endY){
+    console.log("moveElementAnimation " + startX + "," + startY + " -> " + endX + "," + endY);
+    var dX = startX - endX + 200;
+    var dY = startY - endY - 20;
+    console.log("diff " + dX + " " + dY);
+    $(".playerFigure").animate({left: dX + 'px', top: -dY + 'px'}, "slow");
+
+}
+
+
+JSBoilerplate.prototype.moveElementCss = function(name, xpos, ypos){
     console.log("moveElement " + xpos + " " + ypos);
-    $(".playerFigure").css({left: xpos, top: ypos});    
+    $(".playerFigure").css({'left': 'xpos' + 'px', 'top': 'ypos' + 'px'});
 }
+
+JSBoilerplate.prototype.moveElementInterval = function(startX, startY, endX, endY){
+    console.log("moveElementInterval " + startX + "," + startY + " -> " + endX + "," + endY);
+    var xp = 0, yp = 0;
+    xp = startX;
+    yp = startY;
+    var loop = setInterval(function(){
+	// change 12 to alter damping, higher is slower
+	xp += (endX - xp) / 12;
+	yp += (endY - yp) / 12;
+	$(".playerFigure").css({left:xp, top:yp});
+    }, 30);
+}
+
+
+JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
+
+var theThing = document.querySelector(".playerFigure");
+var container = document.querySelector(".gamearea");
+
+container.addEventListener("click", getClickPosition, false);
+
+function getClickPosition(e) {
+	var parentPosition = getPosition(e.currentTarget);
+	var xPosition = e.clientX - parentPosition.x - (theThing.clientWidth / 2);
+	var yPosition = e.clientY - parentPosition.y - (theThing.clientHeight / 2);
+	
+	theThing.style.left = xPosition + "px";
+    theThing.style.top = yPosition + "px";
+    theThing.className += " movingFigure";
+}
+
+// Helper function to get an element's exact position
+function getPosition(el) {
+  var xPos = 0;
+  var yPos = 0;
+
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+}
+
+
+
+
+
+
+}
+
+
+
+
+
+
 
 
 JSBoilerplate.prototype.mouseOverElement = function(){

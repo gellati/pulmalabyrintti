@@ -71,9 +71,12 @@ html, body {
 
 .playerFigure{
     background-color: red;
-    position: absolute;
+    position: relative;
     width: 20px;
     height: 40px;
+    transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
+    top .5s cubic-bezier(.42,-0.3,.78,1.25);
+
 }
 
 .mockPosition{
@@ -83,3 +86,48 @@ html, body {
     height: 40px;
 
 }
+
+.mockPosition:hover{
+    border: 1px solid yellow;
+}
+
+
+@keyframes roll{
+    0%{
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    20%{
+        -ms-transform: rotate(72deg);
+        -webkit-transform: rotate(72deg);
+        transform: rotate(72deg);
+    }
+    40%{
+        -ms-transform: rotate(144deg);
+        -webkit-transform: rotate(144deg);
+        transform: rotate(144deg);
+    }
+    60%{
+        -ms-transform: rotate(216deg);
+        -webkit-transform: rotate(216deg);
+        transform: rotate(216deg);
+    }
+    80%{
+        -ms-transform: rotate(288deg);
+        -webkit-transform: rotate(288deg);
+        transform: rotate(288deg);
+    }
+    100%{
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }        
+}
+
+.movingFigure{
+    animation: roll .5s;
+    animation-iteration-count: infinite;
+
+}
+
