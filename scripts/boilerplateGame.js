@@ -79,8 +79,9 @@ JSBoilerplate = function(options) {
 JSBoilerplate.prototype.start = function() {
     var self = this; 
     self.drawGameArea();
+    self.newGame();
 
-    self.keyBoardMovement();
+    
     self.checkCursorPosition();
     self.checkCursorElement();
 
@@ -93,8 +94,6 @@ JSBoilerplate.prototype.start = function() {
 JSBoilerplate.prototype.drawGameArea = function(){
 
     var self = this;
-
-
 
 //    var height = $(window).height();
 //    var width = $(window).width();
@@ -153,55 +152,27 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.gateBottom = $('<div class="gateBottom"></div>');
     self.parent.append(self.gateBottom);
 
-
+/*
     // the questionArea, positioning questionArea in the upper middle of the board
     self.questionArea = $('<div class="questionArea"></div>');
     self.parent.append(self.questionArea);
-
-    var a, b, c;
-    var randomNumber1 = Math.floor(Math.random() * 11);
-    var randomNumber2 = Math.floor(Math.random() * 11);
-    
-    a = randomNumber1 + randomNumber2;
-    b = a;
-    c = a;
+*/
 
 
-    while(b === a ){
-	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
-    }
-
-    while(c === a || c === b){
-	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
-    }
-
-    console.log(a + "," + b + "," + c);
-/**/
-
-    var answers = [a, b, c];
-    answers = self.shuffle(answers);
-    
-    console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
-
-    // the equation, positioning equation in the upper middle of the board
-
-    self.equation = $('<div class="equation">' + randomNumber1 + '+' + randomNumber2 +'=?</div>');
-    self.parent.append(self.equation);
+    self.questionArea = $('<div class="questionArea"></div>');
+    self.parent.append(self.questionArea);
 
     // the answerLeft, positioning answerLeft in the left side of the board
-    self.answerLeft = $('<div class="answerLeft clickable" data-value="' + answers[0] + '">' + answers[0] + '</div>');
+    self.answerLeft = $('<div class="answerLeft clickable"></div>');
     self.parent.append(self.answerLeft);
 
     // the answerRight, positioning answerRight in the right side of the board
-    self.answerRight = $('<div class="answerRight clickable" data-value="' + answers[1] + '">' + answers[1] + '</div>');
+    self.answerRight = $('<div class="answerRight clickable"></div>');
     self.parent.append(self.answerRight);
 
     // the answerTop, positioning answerTop in the top side of the board
-    self.answerTop = $('<div class="answerTop clickable" data-value="' + answers[2] + '">' + answers[2] + '</div>');
+    self.answerTop = $('<div class="answerTop clickable"></div>');
     self.parent.append(self.answerTop);
-
-
-
 
     // the answerBottom, positioning answerBottom in the bottom side of the board
     self.answerBottom = $('<div class="answerBottom clickable" data-value="71">^</div>');
@@ -230,6 +201,89 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
 }
 
+JSBoilerplate.prototype.newGame = function(){
+    var self = this;
+    var a, b, c;
+    var randomNumber1 = Math.floor(Math.random() * 11);
+    var randomNumber2 = Math.floor(Math.random() * 11);
+    
+    a = randomNumber1 + randomNumber2;
+    b = a;
+    c = a;
+
+
+    while(b === a ){
+	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while(c === a || c === b){
+	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    console.log(a + "," + b + "," + c);
+/**/
+
+    var answers = [a, b, c];
+    answers = self.shuffle(answers);
+    
+    console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
+
+    // the equation, positioning equation in the upper middle of the board
+    
+    var questionArea = document.querySelector('.questionArea');
+    questionArea.setAttribute('data-value', a);
+    questionArea.innerHTML = randomNumber1.toString() + '+' + randomNumber2.toString() + '=?';
+
+    var answerLeft = document.querySelector('.answerLeft');
+    answerLeft.setAttribute('data-value', answers[0]);
+    answerLeft.innerHTML = answers[0].toString();
+
+    var answerRight = document.querySelector('.answerRight');
+    answerRight.setAttribute('data-value', answers[1]);
+    answerRight.innerHTML = answers[1].toString();
+
+    var answerTop = document.querySelector('.answerTop');
+    answerTop.setAttribute('data-value', answers[2]);
+    answerTop.innerHTML = answers[2].toString();
+    
+}
+
+
+JSBoilerplate.prototype.clearGame = function(){
+    var self = this;
+
+    var questionArea = document.querySelector('.questionArea');
+    questionArea.removeAttribute('data-value');
+    questionArea.innerHTML = '';
+    questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+    
+    var answerLeft = document.querySelector('.answerLeft');
+    answerLeft.removeAttribute('data-value');
+    answerLeft.innerHTML = '';
+
+    var answerRight = document.querySelector('.answerRight');
+    answerRight.removeAttribute('data-value');
+    answerRight.innerHTML = '';
+
+    var answerTop = document.querySelector('.answerTop');
+    answerTop.removeAttribute('data-value');
+    answerTop.innerHTML = '';
+
+    var answerBottom = document.querySelector('.answerBottom');
+    answerBottom.removeAttribute('data-value');
+    answerBottom.innerHTML = '';
+
+    var height = $(document).height();
+    var width = $(document).width();
+    
+    playerFigures = $('.playerFigure');
+    playerFigures.removeClass('movingFigure');
+    playerFigures.css({ top: height/2, left: width/2});
+
+
+    
+    
+}
 
 
 
@@ -378,6 +432,24 @@ JSBoilerplate.prototype.shuffle = function(array) {
 
 	return array;
 }
+
+
+JSBoilerplate.prototype.CheckElementOverlap = function(el1, el2) {
+    el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
+    el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
+    el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
+    el2.offsetRight = el2.offsetLeft + el2.offsetWidth;
+    
+    return !((el1.offsetBottom < el2.offsetTop) ||
+             (el1.offsetTop > el2.offsetBottom) ||
+             (el1.offsetRight < el2.offsetLeft) ||
+             (el1.offsetLeft > el2.offsetRight))
+};
+
+
+
+
+
 
 // Checks if array as given item
 JSBoilerplate.prototype.isIn = function(array, item) {
@@ -545,9 +617,11 @@ JSBoilerplate.prototype.shuffle = function(array){
 
 
 JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
-
+    self = this;
     var playerFigure = document.querySelector(".playerFigure");
     var container = document.querySelector(".gamearea");
+    var questionArea = document.querySelector(".questionArea");
+    var targetElement;
     
     container.addEventListener("click", getClickPosition, false);
 /*
@@ -560,17 +634,34 @@ JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY)
 
 //    });
     function getClickPosition(e) {
+	
+
 	$(container).on('click', '.clickable', function(e) {
-	    //	    if($(e.currentTarget).hasClass('clickable')){
-//	    console.log($(this).);
-		var parentPosition = getPosition(e.currentTarget);
-		var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
-		var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
-		console.log("getClickPosition " + xPosition + " " + yPosition);
-		playerFigure.style.left = xPosition + "px";
-		playerFigure.style.top = yPosition + "px";
-		playerFigure.className += " movingFigure";
-//	    }
+
+	    //var parentPosition = getPosition(e.currentTarget);
+	    var parentPosition = getPosition(container.currentTarget);
+
+	    var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = e.currentTarget;
+
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+		questionArea.className += " correctAnswer";
+		console.log("correct");
+		self.clearGame();
+		
+		self.newGame();
+	    }
+	    
+	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
 	});
 	
     }

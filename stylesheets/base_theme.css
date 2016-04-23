@@ -76,7 +76,7 @@ html, body {
     height: 40px;
     transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
     top .5s cubic-bezier(.42,-0.3,.78,1.25);
-
+    z-index: 10;
 }
 
 
@@ -262,6 +262,10 @@ html, body {
 	position: absolute;
 }
 
+.correctAnswer{
+    border: 20px solid red;
+}
+
 
 .questionArea{
 	width: 26%;
@@ -273,19 +277,7 @@ html, body {
 	right: 0;
 	transform: translate(-50%, 0%);
 	z-index: +2;
-}
 
-
-
-
-
-.equation{
-	position: absolute;
-	top: 27%;
-	left: 50%;
-	right: 0;
-	transform: translate(-50%, 0%);
-	z-index: +3;
 	/* for text */
 	line-height: 20vmin;
 	text-align:center;
