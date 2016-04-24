@@ -70,13 +70,15 @@ html, body {
 }
 
 .playerFigure{
-    background-color: red;
+    background-image: url(../images/char.png);
+    background-size: 80px 80px;
     position: relative;
-    width: 20px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
     top .5s cubic-bezier(.42,-0.3,.78,1.25);
     z-index: 10;
+    background-repeat: no-repeat;
 
 }
 
