@@ -205,6 +205,137 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
 JSBoilerplate.prototype.newGame = function(){
     var self = this;
+    var methods = [];
+    methods.push(self.addition);
+    methods.push(self.subtraction);
+    methods.push(self.multiplication);
+    methods.push(self.division);
+
+    var a = Math.floor(Math.random() * methods.length);
+    console.log(a);
+    switch(a){
+    case 0: self.addition();
+	break;
+    case 1: self.subtraction();
+	break;    
+    case 2: self.multiplication();
+	break;
+    case 3: self.division();
+	break;
+    }
+
+}
+
+JSBoilerplate.prototype.division = function(){
+    var self = this;
+    console.log("division");
+    var type = '/';
+    var a, b, c, d;
+    var randomNumber1 = Math.floor(Math.random() * 11);
+    var randomNumber2 = Math.floor(Math.random() * 11);
+
+    a = randomNumber1 * randomNumber2;
+    
+    b = a;
+    c = a;
+    d = a;
+
+    while(b === a ){
+	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while(c === a || c === b){
+	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while(d === a || d === b || d === c){
+	d = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+    
+    console.log(a + "," + b + "," + c + "," + d);
+
+    var answers = [randomNumber1, b, c, d];
+    answers = self.shuffle(answers);
+    
+    console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
+
+    self.placeNumbers(type, a, randomNumber2, randomNumber1, answers);
+    
+}
+
+
+JSBoilerplate.prototype.multiplication = function(){
+    var self = this;
+    var type = '*';
+    var a, b, c, d;
+    var randomNumber1 = Math.floor(Math.random() * 11);
+    var randomNumber2 = Math.floor(Math.random() * 11);
+
+    a = randomNumber1 * randomNumber2;
+    b = a;
+    c = a;
+    d = a;
+    
+    while(b === a ){
+	b = Math.floor(Math.random() * 11) * Math.floor(Math.random() * 11);
+    }
+
+    while(c === a || c === b){
+	c = Math.floor(Math.random() * 11) * Math.floor(Math.random() * 11);
+    }
+
+    while(d === a || d === b || d === c){
+	d = Math.floor(Math.random() * 11) * Math.floor(Math.random() * 11);
+    }
+    
+    console.log(a + "," + b + "," + c + "," + d);
+
+    var answers = [a, b, c, d];
+    answers = self.shuffle(answers);
+    
+    console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
+
+    self.placeNumbers(type, randomNumber1, randomNumber2, a, answers);
+
+}
+
+JSBoilerplate.prototype.subtraction = function(){
+    var self = this;
+    var type = '-';
+    var a, b, c, d;
+    var randomNumber1 = Math.floor(Math.random() * 11);
+    var randomNumber2 = Math.floor(Math.random() * 11);
+    while(randomNumber2 >= randomNumber1){
+	randomNumber2 = Math.floor(Math.random() * 11);
+    }
+
+    a = randomNumber1 - randomNumber2;
+    b = a;
+    c = a;
+    d = a
+
+
+    while(b === a && b >= 0){
+	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while( (c === a || c === b) && c >= 0 ){
+	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    while( (d === a || d === b || d === c) && d >= 0){
+	d = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
+    }
+
+    var answers = [a, b, c, d];
+    answers = self.shuffle(answers);
+    self.placeNumbers(type, randomNumber1, randomNumber2, a, answers);
+}
+
+
+JSBoilerplate.prototype.addition = function(){
+    var self = this;
+    var type = '+';
     var a, b, c, d;
     var randomNumber1 = Math.floor(Math.random() * 11);
     var randomNumber2 = Math.floor(Math.random() * 11);
@@ -226,21 +357,23 @@ JSBoilerplate.prototype.newGame = function(){
     while(d === a || d === b || d === c){
 	d = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
-
     
     console.log(a + "," + b + "," + c + "," + d);
-/**/
 
     var answers = [a, b, c, d];
     answers = self.shuffle(answers);
     
     console.log(randomNumber1 + " + " + randomNumber2 + " = " + a);
 
-    // the equation, positioning equation in the upper middle of the board
-    
+    self.placeNumbers(type, randomNumber1, randomNumber2, a, answers);
+
+}
+
+JSBoilerplate.prototype.placeNumbers = function(type, randomNumber1, randomNumber2, correctAnswer, answers){
+    // the equation, positioning equation in the upper middle of the board    
     var questionArea = document.querySelector('.questionArea');
-    questionArea.setAttribute('data-value', a);
-    questionArea.innerHTML = randomNumber1.toString() + '+' + randomNumber2.toString() + '=?';
+    questionArea.setAttribute('data-value', correctAnswer);
+    questionArea.innerHTML = randomNumber1.toString() + type + randomNumber2.toString() + '=?';
 
     var answerLeft = document.querySelector('.answerLeft');
     answerLeft.setAttribute('data-value', answers[0]);
@@ -259,6 +392,11 @@ JSBoilerplate.prototype.newGame = function(){
     answerBottom.innerHTML = answers[3].toString();
     
 }
+
+
+
+
+
 
 
 JSBoilerplate.prototype.clearGame = function(){
