@@ -1,0 +1,355 @@
+/*
+	Define all the styles needed in the game in this file. 
+	If you create multiple themes, this file should have all the "critical" styling and 
+	
+*/
+/* Include Luckiest Guy font */
+@font-face {
+  font-family: "Luckiest Guy";
+  src: url('../fonts/LuckiestGuy.ttf') format('truetype');
+}
+/* This makes life alot easier */
+* {
+	box-sizing: border-box;
+}
+
+/* 	Take all the space available */
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+
+.gamearea {
+	display:block;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/stone.jpg);
+	overflow: hidden;
+}
+
+.normal .startbutton {
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	background-color: rgb(100,100,100);
+	border-color: rgb(200,200,200);
+	border-image: none;
+	border-radius: 0.25em;
+	border-style: solid;
+	border-width: 5px 5px 8px;
+	box-shadow: 0 5px 0 rgba(50, 50, 50, 0.3);
+	color: rgb(255,255, 255);
+	display: inline-block;
+	font-size: 300%;
+	font-weight: bold;
+	padding: 0.4em 1em;
+	text-align: center;
+	text-shadow: 0 5px 0 rgba(0, 0, 0, 0.1);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+
+}
+
+.normal .startbutton:active {
+	position: relative;
+	margin-top: 5px;
+	box-shadow: 0px 0px 0px rgba(255,255,255, 0);
+}
+
+.playerFigure{
+    background-image: url(../images/char.png);
+    background-size: 80px 80px;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
+    top .5s cubic-bezier(.42,-0.3,.78,1.25);
+    z-index: 10;
+    background-repeat: no-repeat;
+
+}
+
+.correctAnswer{
+  -moz-animation-duration: 5s;
+  -moz-animation-delay: 5s;
+  -moz-animation-iteration-count: infinite;
+
+  -webkit-animation-duration: 5s;
+  -webkit-animation-delay: 5s;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-duration: 5s;
+  animation-delay: 5s;
+  animation-iteration-count: infinite;
+}
+
+
+
+
+@keyframes roll{
+    0%{
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    20%{
+        -ms-transform: rotate(72deg);
+        -webkit-transform: rotate(72deg);
+        transform: rotate(72deg);
+    }
+    40%{
+        -ms-transform: rotate(144deg);
+        -webkit-transform: rotate(144deg);
+        transform: rotate(144deg);
+    }
+    60%{
+        -ms-transform: rotate(216deg);
+        -webkit-transform: rotate(216deg);
+        transform: rotate(216deg);
+    }
+    80%{
+        -ms-transform: rotate(288deg);
+        -webkit-transform: rotate(288deg);
+        transform: rotate(288deg);
+    }
+    100%{
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }        
+}
+
+.movingFigure{
+    animation: roll .5s;
+    animation-iteration-count: infinite;
+
+}
+
+.wallLeft{
+	width: 6%;
+	height: 100%;
+	background-image: url(../images/brick2.jpg);
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:0;
+}
+
+.wallRight{
+	width: 6%;
+	height: 100%;
+	background-image: url(../images/brick2.jpg);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right:0;
+}
+
+.wallTop{
+	width: 100%;
+	height: 10%;
+	background-image: url(../images/brick2.jpg);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.wallBottom{
+	width: 100%;
+	height: 10%;
+	background-image: url(../images/brick2.jpg);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.gateLeft{
+	width: 12%;
+	height: 20%;
+	background-image: url(../images/gateLeft.jpg);
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	left: 0%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+	z-index: +1;
+}
+
+.gateRight{
+	width:6%;
+	height: 20%;
+	background-color: purple;
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	right: 0;
+	/* bring your own prefixes */
+	transform: translate(0%, -50%);
+    z-index: +1;
+}
+
+.gateTop{
+	width: 15%;
+	height: 10%;
+	background-image: url(../images/gate.jpg);
+	position: absolute;
+	position: fixed;
+	top: 0%;
+	left: 50%;
+	right: 0;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	z-index: +2;
+}
+
+.gateBottom{
+	width: 15%;
+	height: 10%;
+	background-color: purple;
+	position: absolute;
+	right: 0;
+	bottom: 0%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	z-index: +1;
+}
+
+.answerLeft{
+	width: 8%;
+	height: 12%;
+	background-image: url(../images/stone2.jpg);
+	position: absolute;
+	top:50%;
+	bottom:0;
+	left: 10%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+}
+
+.answerRight{
+	width: 8%;
+	height: 12%;
+	background-image: url(../images/stone2.jpg);
+	position: absolute;
+	top:50%;
+	bottom:0;
+	right:6%;
+	/* bring your own prefixes */
+	transform: translate(0%, -50%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+}
+
+.answerTop{
+	width: 8%;
+	height: 10%;
+	background-image: url(../images/stone2.jpg);
+	position: absolute;
+	position: fixed;
+	top: 10%;
+	left: 50%;
+	right: 0;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+}
+
+.answerBottom{
+	width: 8%;
+	height: 10%;
+	background-image: url(../images/stone2.jpg);
+	position: absolute;
+	right: 0;
+	bottom: 10%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, 0%);
+	position: absolute;
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+}
+
+.correctAnswer{
+    border: 20px solid green;
+}
+
+
+.questionArea{
+	width: 26%;
+	height: 14%;
+	background-image: url(../images/stone2.jpg);
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	right: 0;
+	transform: translate(-50%, 0%);
+	z-index: +2;
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+
+
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+
+.clickable{
+	/* for text */
+	line-height: 20vmin;
+	text-align:center;
+	font-size: 10vmin;
+	font-family: "Luckiest Guy", Arial, Verdana, Tahoma;
+	color: #f1f1f1;
+
+	/* Prevent selecting text inside container */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none;   /* Chrome/Safari/Opera */
+	-khtml-user-select: none;    /* Konqueror */
+	-moz-user-select: none;      /* Firefox */
+	-ms-user-select: none;       /* IE/Edge */
+	user-select: none;           /* non-prefixed version, currently
+	                                not supported by any browser */ 
+}
+
+
+.clickable:hover{
+    border: 5px solid yellow;
+}
