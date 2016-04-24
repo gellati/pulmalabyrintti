@@ -79,9 +79,320 @@ JSBoilerplate = function(options) {
 JSBoilerplate.prototype.start = function() {
     var self = this; 
     self.drawGameArea();
+    self.keyControl();
+    self.jumpControl();
     self.newGame();
     self.clickListener();
 
+
+
+    var container = document.querySelector(".gameArea");
+    var playerFigure = document.querySelector(".playerFigure");
+    var questionArea = document.querySelector(".questionArea");
+    var targetElement;
+    
+    self.gpcontrol = new VilleControl();
+    $('body').on('gpcontrol', function(e) {
+        if(e.direction === 'up') {
+
+	    var currentTarget = $(".answerTop")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerTop");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
+	    	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+	    
+        }
+        else if(e.direction === 'left') {
+
+	    var currentTarget = $(".answerLeft")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerLeft");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerLeft"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+
+	}
+        else if(e.direction === 'right') {
+//                self.moveCharacterToWithOutJump('right');
+
+	    var currentTarget = $(".answerRight")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerRight");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerRight"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+
+	}
+        else if(e.direction === 'down') {
+                $('.item0[data-level="'+self.currentQuestion+'"]').click();
+
+	    var currentTarget = $(".answerBottom")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerBottom");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerBottom"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+	}
+
+/*
+	else if(e.direction === 'triangle') {
+                $('.item1[data-level="'+self.currentQuestion+'"]').click();
+        }
+        else if(e.direction === 'circle') {
+                $('.item2[data-level="'+self.currentQuestion+'"]').click();
+        }
+        else if(e.direction === 'square') {
+                $('.item3[data-level="'+self.currentQuestion+'"]').click();
+        }
+*/
+	/*
+        else if (e.direction === 'connected') {
+                self.options.dance = true;
+                self.dance = true;
+                        $('.optionLabel').each(function(index) {
+                                $(this)[0].className = $(this)[0].className.replace('nodance', 'dance');
+                        });
+        }
+*/
+	/*
+        else if (e.direction === 'disconnected') {
+                self.options.dance = false;
+                self.dance = false;
+                        $('.optionLabel').each(function(index) {
+
+                                $(this)[0].className = $(this)[0].className.replace('dance', 'nodance');
+                        });
+        }
+*/
+
+
+    });
+
+    
 //    container.addEventListener("click", getClickPosition, false);    
 
 //    self.checkCursorPosition();
@@ -90,6 +401,316 @@ JSBoilerplate.prototype.start = function() {
     console.log("the game has begun!");
 
 }
+
+JSBoilerplate.prototype.keyControl = function(){
+
+    var self = this;
+    var container = document.querySelector(".gameArea");
+    var playerFigure = document.querySelector(".playerFigure");
+    var questionArea = document.querySelector(".questionArea");
+    var targetElement;
+
+    $(window).bind('keydown', function(e) {
+        // 1
+        if(e.keyCode == 49 || e.which == 49) {
+            e.preventDefault();
+
+	    var currentTarget = $(".answerTop")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerTop");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+        }// end keycode 1
+		
+        // 2
+        else if(e.keyCode == 50 || e.which == 50) {
+            e.preventDefault();
+	    console.log("2");
+
+	    var currentTarget = $(".answerLeft")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerLeft");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+
+	}
+
+        // 3
+        else if(e.keyCode == 51 || e.which == 51) {
+            e.preventDefault();
+	    console.log("3");
+
+	    var currentTarget = $(".answerRight")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerRight");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+        }
+        
+	        // 4
+        else if(e.keyCode == 52 || e.which == 52) {
+            e.preventDefault();
+	    console.log("4");
+	    var currentTarget = $(".answerBottom")[0];
+	    console.log(currentTarget);
+
+	    
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    console.log(parentPosition.x + " " + parentPosition.y);
+
+	    var currentTargetQ = $(".answerBottom");
+	    console.log(currentTargetQ);
+
+	    xpos = currentTargetQ[0].offsetLeft;
+	    ypos = currentTargetQ[0].offsetTop;
+	    
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+	    
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+	    console.log("1");
+//	    var currentTarget = document.querySelector(".answerTop");
+	    var parentPosition = self.getPosition(container, currentTarget);
+	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+
+	    console.log("getClickPosition " + xPosition + " " + yPosition);
+
+
+
+	    playerFigure.style.left = xPosition + "px";
+	    playerFigure.style.top = yPosition + "px";
+	    playerFigure.className += " movingFigure";
+	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
+	    
+	
+	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
+	    questionArea.className += " correctAnswer";
+	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+		if(e.originalEvent.propertyName === 'top'){
+		    console.log(e.originalEvent.propertyName);
+
+	    console.log("correct");
+//	    self.finishGame();
+	    self.clearGame();	    
+		    self.newGame();
+
+//		    document.getElementById("playerFigure").focus();
+//		    document.getElementById("playerFigure").select();
+		    
+//		    $(".gameArea").focus();
+		}
+	    });
+		
+	    }else{
+	    
+	    
+		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
+		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+		console.log("wrong");		
+	    }
+	    
+	    console.log("1end");
+        }
+       
+        // up arrow and w
+        else if(e.keyCode == 38 || e.which == 38 || e.keyCode == 87 || e.which == 87 ) {
+                e.preventDefault();
+            if(self.onOption) {
+                self.onOption.click();
+		console.log("ladder");
+//                self.character.removeClass('onLadder');
+            }
+        }
+	
+        else {
+            console.log("unknown key");
+        }
+    });
+
+}
+
+
+JSBoilerplate.prototype.jumpControl = function(){
+    var villeControl = new VilleControl();
+
+    //villeControl.observe();
+    //villeControl.emitEvent();
+    
+    
+ 
+}
+
 
 
 
@@ -643,7 +1264,7 @@ JSBoilerplate.prototype.keyBoardMovement = function(){
 		self.playerFigure.xpos += 5;
 		console.log("right");
 		break;
-	    case 38: upKey = true;
+	    case 38: upKey = true;s
 		y = $(".playerFigure").offset().top;
 		$(".playerFigure").css({top: y - 5});
 		self.playerFigure.ypos -= 5;
@@ -782,19 +1403,37 @@ JSBoilerplate.prototype.clickListener = function(){
     var targetElement;
     
     $(container).on('click', '.clickable', function(e) {
+
+	console.log($(this)[0]);
 	
 	//var parentPosition = getPosition(e.currentTarget);
-	var parentPosition = getPosition(container.currentTarget);
+	var parentPosition = self.getPosition(container.currentTarget);
 	
 	var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
 	var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
+
+
+
+/*	
+	if(isNaN($(this).css("left"))
+	   $(this).css("top")
+	   $(this).css("right")
+	   $(this).css("bottom"));
+
+	var xPosition = parseFloat($(this).css("left")) - parentPosition.x - (playerFigure.clientWidth / 2);
+	var yPosition = parseFloat($(this).css("top")) - parentPosition.y - (playerFigure.clientHeight / 2);
+	console.log($(this).css("left"),$(this).css("top"),
+		   $(this).css("right"),$(this).css("bottom"));
+
+*/
+	
 	console.log("getClickPosition " + xPosition + " " + yPosition);
 	playerFigure.style.left = xPosition + "px";
 	playerFigure.style.top = yPosition + "px";
 	playerFigure.className += " movingFigure";
 	targetElement = this; //.currentTarget;
 
-
+	
 	if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
 	    questionArea.className += " correctAnswer";
 	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
@@ -813,9 +1452,6 @@ JSBoilerplate.prototype.clickListener = function(){
 		}
 	    });
 	    
-
-
-	    
 	}else{
 	    
 	    
@@ -823,37 +1459,48 @@ JSBoilerplate.prototype.clickListener = function(){
 	    questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
 	    console.log("wrong");		
 	}
+
 	
     });
 	
 //}
+
     // Helper function to get an element's exact position
+/*
     function getPosition(el) {
-	var xPos = 0;
-	var yPos = 0;
-	while (el) {
-	    if (el.tagName == "BODY") {
-		
-		// deal with browser quirks with body/window/document and page scroll
-		var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-		var yScroll = el.scrollTop || document.documentElement.scrollTop;
-		
-		xPos += (el.offsetLeft - xScroll + el.clientLeft);
-		yPos += (el.offsetTop - yScroll + el.clientTop);
-		
-	    }
-	    else {
-		// for all other non-BODY elements
-		xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-		yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-	    }	    
-	    el = el.offsetParent;
+    }
+*/
+
+}
+
+
+JSBoilerplate.prototype.getPosition = function(el){
+    var xPos = 0;
+    var yPos = 0;
+    while (el) {
+	if (el.tagName == "BODY") {
+	    
+	    // deal with browser quirks with body/window/document and page scroll
+	    var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+	    var yScroll = el.scrollTop || document.documentElement.scrollTop;
+	    
+	    xPos += (el.offsetLeft - xScroll + el.clientLeft);
+	    yPos += (el.offsetTop - yScroll + el.clientTop);
+	    
 	}
+	else {
+	    // for all other non-BODY elements
+	    xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+		yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+	}	    
+	el = el.offsetParent;
+    }
     return {
 	x: xPos,
 	y: yPos
     };
-    }
+    
+
 }
 
 
