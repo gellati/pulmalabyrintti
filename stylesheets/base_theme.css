@@ -32,7 +32,7 @@ html, body {
 	bottom: 0;
 	width: 100%;
 	height: 100%;
-	background: #222;
+	background-image: url(../images/stone.jpg);
 	overflow: hidden;
 }
 
@@ -139,7 +139,7 @@ html, body {
 .wallLeft{
 	width: 6%;
 	height: 100%;
-	background-color: blue;
+	background-image: url(../images/brick2.jpg);
 	position: absolute;
 	top:0;
 	bottom:0;
@@ -149,7 +149,7 @@ html, body {
 .wallRight{
 	width: 6%;
 	height: 100%;
-	background-color: green;
+	background-image: url(../images/brick2.jpg);
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -159,7 +159,7 @@ html, body {
 .wallTop{
 	width: 100%;
 	height: 10%;
-	background-color: grey;
+	background-image: url(../images/brick2.jpg);
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -169,7 +169,7 @@ html, body {
 .wallBottom{
 	width: 100%;
 	height: 10%;
-	background-color: yellow;
+	background-image: url(../images/brick2.jpg);
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -179,7 +179,7 @@ html, body {
 .gateLeft{
 	width: 12%;
 	height: 20%;
-	background-color: purple;
+	background-image: url(../images/gateLeft.jpg);
 	position: absolute;
 	top: 50%;
 	bottom: 0;
@@ -205,7 +205,7 @@ html, body {
 .gateTop{
 	width: 15%;
 	height: 10%;
-	background-color: purple;
+	background-image: url(../images/gate.jpg);
 	position: absolute;
 	position: fixed;
 	top: 0%;
@@ -213,7 +213,7 @@ html, body {
 	right: 0;
 	/* bring your own prefixes */
 	transform: translate(-50%, 0%);
-	z-index: +1;
+	z-index: +2;
 }
 
 .gateBottom{
@@ -232,31 +232,37 @@ html, body {
 .answerLeft{
 	width: 8%;
 	height: 12%;
-	background-color: orange;
+	background-image: url(../images/stone2.jpg);
 	position: absolute;
 	top:50%;
 	bottom:0;
 	left: 10%;
 	/* bring your own prefixes */
 	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
 }
 
 .answerRight{
 	width: 8%;
 	height: 12%;
-	background-color: orange;
+	background-image: url(../images/stone2.jpg);
 	position: absolute;
 	top:50%;
 	bottom:0;
 	right:6%;
 	/* bring your own prefixes */
 	transform: translate(0%, -50%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
 }
 
 .answerTop{
 	width: 8%;
 	height: 10%;
-	background-color: orange;
+	background-image: url(../images/stone2.jpg);
 	position: absolute;
 	position: fixed;
 	top: 10%;
@@ -264,12 +270,15 @@ html, body {
 	right: 0;
 	/* bring your own prefixes */
 	transform: translate(-50%, 0%);
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
 }
 
 .answerBottom{
 	width: 8%;
 	height: 10%;
-	background-color: orange;
+	background-image: url(../images/stone2.jpg);
 	position: absolute;
 	right: 0;
 	bottom: 10%;
@@ -277,23 +286,30 @@ html, body {
 	/* bring your own prefixes */
 	transform: translate(-50%, 0%);
 	position: absolute;
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
 }
 
 .correctAnswer{
-    border: 20px solid red;
+    border: 20px solid green;
 }
 
 
 .questionArea{
 	width: 26%;
 	height: 14%;
-	background-color: #669933;
+	background-image: url(../images/stone2.jpg);
 	position: absolute;
 	top: 30%;
 	left: 50%;
 	right: 0;
 	transform: translate(-50%, 0%);
 	z-index: +2;
+	display: flex;
+	justify-content: center; /* align num horizontal */
+	align-items: center; /* align num vertical */
+
 
 	/* for text */
 	line-height: 20vmin;
