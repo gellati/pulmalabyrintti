@@ -94,268 +94,20 @@ JSBoilerplate.prototype.start = function() {
     self.gpcontrol = new VilleControl();
     $('body').on('gpcontrol', function(e) {
         if(e.direction === 'up') {
+	    self.keyCheck('up');
 
-	    var currentTarget = $(".answerTop")[0];
-	    console.log(currentTarget);
-
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerTop");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
-	    	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
-
-	    
         }
         else if(e.direction === 'left') {
-
-	    var currentTarget = $(".answerLeft")[0];
-	    console.log(currentTarget);
-
+	    self.keyCheck('left');
 	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerLeft");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerLeft"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
-
-
 	}
         else if(e.direction === 'right') {
-//                self.moveCharacterToWithOutJump('right');
-
-	    var currentTarget = $(".answerRight")[0];
-	    console.log(currentTarget);
-
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerRight");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerRight"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
-
+	    self.keyCheck('right');
 
 	}
         else if(e.direction === 'down') {
-                $('.item0[data-level="'+self.currentQuestion+'"]').click();
-
-	    var currentTarget = $(".answerBottom")[0];
-	    console.log(currentTarget);
-
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerBottom");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerBottom"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
-
+	    self.keyCheck('down');
+	   
 	}
 
 /*
@@ -402,6 +154,8 @@ JSBoilerplate.prototype.start = function() {
 
 }
 
+
+// moves the figure around with keys. valid keys are up, left, right, down
 JSBoilerplate.prototype.keyControl = function(){
 
     var self = this;
@@ -412,275 +166,33 @@ JSBoilerplate.prototype.keyControl = function(){
 
     $(window).bind('keydown', function(e) {
         // 1
-        if(e.keyCode == 49 || e.which == 49) {
+        if(e.keyCode == 38 || e.which == 38) { // up
             e.preventDefault();
-
-	    var currentTarget = $(".answerTop")[0];
-	    console.log(currentTarget);
-
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerTop");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
+	    self.keyCheck('up');
+//	    self.keyCheck(38);
 
         }// end keycode 1
 		
         // 2
-        else if(e.keyCode == 50 || e.which == 50) {
+        else if(e.keyCode == 37 || e.which == 37) {
             e.preventDefault();
-	    console.log("2");
-
-	    var currentTarget = $(".answerLeft")[0];
-	    console.log(currentTarget);
-
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerLeft");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
+	    self.keyCheck('left')
+//	    self.keyCheck(37);
 
 	}
 
         // 3
-        else if(e.keyCode == 51 || e.which == 51) {
+        else if(e.keyCode == 39 || e.which == 39) {
             e.preventDefault();
-	    console.log("3");
-
-	    var currentTarget = $(".answerRight")[0];
-	    console.log(currentTarget);
-
+	    self.keyCheck(39);
 	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerRight");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
         }
         
 	        // 4
-        else if(e.keyCode == 52 || e.which == 52) {
+        else if(e.keyCode == 40 || e.which == 40) {
             e.preventDefault();
-	    console.log("4");
-	    var currentTarget = $(".answerBottom")[0];
-	    console.log(currentTarget);
+	    self.keyCheck(40);
 
-	    
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    console.log(parentPosition.x + " " + parentPosition.y);
-
-	    var currentTargetQ = $(".answerBottom");
-	    console.log(currentTargetQ);
-
-	    xpos = currentTargetQ[0].offsetLeft;
-	    ypos = currentTargetQ[0].offsetTop;
-	    
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-	    
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-	    console.log("1");
-//	    var currentTarget = document.querySelector(".answerTop");
-	    var parentPosition = self.getPosition(container, currentTarget);
-	    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
-	    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
-
-	    console.log("getClickPosition " + xPosition + " " + yPosition);
-
-
-
-	    playerFigure.style.left = xPosition + "px";
-	    playerFigure.style.top = yPosition + "px";
-	    playerFigure.className += " movingFigure";
-	    targetElement = document.querySelector(".answerTop"); //.currentTarget;
-	    
-	
-	    if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
-	    questionArea.className += " correctAnswer";
-	    $(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
-		if(e.originalEvent.propertyName === 'top'){
-		    console.log(e.originalEvent.propertyName);
-
-	    console.log("correct");
-//	    self.finishGame();
-	    self.clearGame();	    
-		    self.newGame();
-
-//		    document.getElementById("playerFigure").focus();
-//		    document.getElementById("playerFigure").select();
-		    
-//		    $(".gameArea").focus();
-		}
-	    });
-		
-	    }else{
-	    
-	    
-		//	    if(questionArea.getAttribute('data-value') != targetElement.getAttribute('data-value')){
-		questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
-		console.log("wrong");		
-	    }
-	    
-	    console.log("1end");
         }
        
         // up arrow and w
@@ -688,8 +200,8 @@ JSBoilerplate.prototype.keyControl = function(){
                 e.preventDefault();
             if(self.onOption) {
                 self.onOption.click();
-		console.log("ladder");
-//                self.character.removeClass('onLadder');
+
+
             }
         }
 	
@@ -701,6 +213,89 @@ JSBoilerplate.prototype.keyControl = function(){
 }
 
 
+JSBoilerplate.prototype.keyCheck = function(keyPressed){
+
+    var self = this;
+    var container = document.querySelector(".gameArea");
+    var playerFigure = document.querySelector(".playerFigure");
+    var questionArea = document.querySelector(".questionArea");
+    var targetElement;
+
+    var element;
+    switch(keyPressed){
+    case 37:
+	element = ".answerLeft";
+	break;
+    case 38:
+	element = ".answerTop";
+	break;
+    case 39:
+	element = ".answerRight";
+	break;
+    case 40:
+	element = ".answerBottom";
+	break;
+    case 'up':
+	element = ".answerTop";
+	break;
+    case 'left':
+	element = ".answerLeft";
+	break;
+    case 'right':
+	element = ".answerRight";
+	break;
+    case 'down':
+	element = ".answerBottom";
+	break;
+    }
+	
+    //	    var currentTarget = document.querySelector(".answerTop");
+    var currentTarget = $(element)[0]; // gives element
+    console.log(currentTarget);
+    currentTarget.style.border = "10px solid yellow";
+    
+    var parentPosition = self.getPosition(container);
+    console.log(parentPosition.x + " " + parentPosition.y);
+
+    var currentTargetQ = $(element);
+    xpos = currentTargetQ[0].offsetLeft;
+    ypos = currentTargetQ[0].offsetTop;
+    console.log(currentTargetQ);
+    
+    var xPosition = xpos - parentPosition.x - (playerFigure.clientWidth / 2);
+    var yPosition = ypos - parentPosition.y - (playerFigure.clientHeight / 2);
+    
+    playerFigure.style.left = xPosition + "px";
+    playerFigure.style.top = yPosition + "px";
+    playerFigure.className += " movingFigure";
+    targetElement = document.querySelector(element); //.currentTarget;
+    console.log("targetElement key");
+    console.log(targetElement);
+    
+    if(questionArea.getAttribute('data-value') === targetElement.getAttribute('data-value')){
+	questionArea.className += " correctAnswer";
+	$(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+	    if(e.originalEvent.propertyName === 'top'){
+		console.log(e.originalEvent.propertyName);
+		currentTarget.style.border = "";
+		console.log("correct");
+		self.clearGame();	    
+		self.newGame();
+		
+	    }
+	});
+	
+    }else{
+	$(playerFigure).one('webkitTransitionEnd mozTransitionEnd MSTransitionEnd otransitionend transitionend', function(e){
+	    questionArea.className = questionArea.className.replace(/\bcorrectAnswer\b/,'');
+	    currentTarget.style.border = "";
+	    console.log("wrong");		
+	});
+    }
+    
+    
+}
+
 JSBoilerplate.prototype.jumpControl = function(){
     var villeControl = new VilleControl();
 
@@ -710,7 +305,6 @@ JSBoilerplate.prototype.jumpControl = function(){
     
  
 }
-
 
 
 
@@ -775,13 +369,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
     self.gateBottom = $('<div class="gateBottom"></div>');
     self.parent.append(self.gateBottom);
 
-/*
-    // the questionArea, positioning questionArea in the upper middle of the board
-    self.questionArea = $('<div class="questionArea"></div>');
-    self.parent.append(self.questionArea);
-*/
-
-
+    
     self.questionArea = $('<div class="questionArea"></div>');
     self.parent.append(self.questionArea);
 
@@ -800,27 +388,6 @@ JSBoilerplate.prototype.drawGameArea = function(){
     // the answerBottom, positioning answerBottom in the bottom side of the board
     self.answerBottom = $('<div class="answerBottom clickable"></div>');
     self.parent.append(self.answerBottom);
-
-
-
-
-    /*
-     // the choiceLeft, positioning choiceLeft in the left of the board
-    self.choiceLeft = $('<div class="choiceLeft">17</div>');
-    self.parent.append(self.choiceLeft);
-
-    // the choiceRight, positioning choiceRight in the right of the board
-    self.choiceRight = $('<div class="choiceRight">12</div>');
-    self.parent.append(self.choiceRight);
-
-    // the choiceTop, positioning choiceTop in the top of the board
-    self.choiceTop = $('<div class="choiceTop">9</div>');
-    self.parent.append(self.choiceTop);
-
-    // the choiceBottom, positioning choiceBottom in the bottom of the board
-    self.choiceBottom = $('<div class="choiceBottom">71</div>');
-    self.parent.append(self.choiceBottom);
-*/
 
 }
 
@@ -1013,10 +580,6 @@ JSBoilerplate.prototype.placeNumbers = function(type, randomNumber1, randomNumbe
     answerBottom.innerHTML = answers[3].toString();
     
 }
-
-
-
-
 
 
 
@@ -1264,7 +827,7 @@ JSBoilerplate.prototype.keyBoardMovement = function(){
 		self.playerFigure.xpos += 5;
 		console.log("right");
 		break;
-	    case 38: upKey = true;s
+	    case 38: upKey = true;
 		y = $(".playerFigure").offset().top;
 		$(".playerFigure").css({top: y - 5});
 		self.playerFigure.ypos -= 5;
@@ -1408,30 +971,19 @@ JSBoilerplate.prototype.clickListener = function(){
 	
 	//var parentPosition = getPosition(e.currentTarget);
 	var parentPosition = self.getPosition(container.currentTarget);
+	console.log(container.currentTarget);
 	
 	var xPosition = e.clientX - parentPosition.x - (playerFigure.clientWidth / 2);
 	var yPosition = e.clientY - parentPosition.y - (playerFigure.clientHeight / 2);
-
-
-
-/*	
-	if(isNaN($(this).css("left"))
-	   $(this).css("top")
-	   $(this).css("right")
-	   $(this).css("bottom"));
-
-	var xPosition = parseFloat($(this).css("left")) - parentPosition.x - (playerFigure.clientWidth / 2);
-	var yPosition = parseFloat($(this).css("top")) - parentPosition.y - (playerFigure.clientHeight / 2);
-	console.log($(this).css("left"),$(this).css("top"),
-		   $(this).css("right"),$(this).css("bottom"));
-
-*/
 	
 	console.log("getClickPosition " + xPosition + " " + yPosition);
 	playerFigure.style.left = xPosition + "px";
 	playerFigure.style.top = yPosition + "px";
 	playerFigure.className += " movingFigure";
 	targetElement = this; //.currentTarget;
+	console.log("targetElement click");
+	console.log(targetElement);
+	
 
 	
 	if(questionArea.getAttribute('data-value') == targetElement.getAttribute('data-value')){
