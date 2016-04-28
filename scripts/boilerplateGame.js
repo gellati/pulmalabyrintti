@@ -155,9 +155,7 @@ JSBoilerplate.prototype.start = function() {
 }
 
 
-
 // moves the figure around with keys. valid keys are up, left, right, down
-
 JSBoilerplate.prototype.keyControl = function(){
 
     var self = this;
@@ -168,7 +166,6 @@ JSBoilerplate.prototype.keyControl = function(){
 
     $(window).bind('keydown', function(e) {
         // 1
-
         if(e.keyCode == 38 || e.which == 38) { // up
             e.preventDefault();
 	    self.keyCheck('up');
@@ -177,7 +174,6 @@ JSBoilerplate.prototype.keyControl = function(){
         }// end keycode 1
 		
         // 2
-
         else if(e.keyCode == 37 || e.which == 37) {
             e.preventDefault();
 	    self.keyCheck('left')
@@ -204,7 +200,6 @@ JSBoilerplate.prototype.keyControl = function(){
                 e.preventDefault();
             if(self.onOption) {
                 self.onOption.click();
-
 
 
             }
@@ -300,7 +295,6 @@ JSBoilerplate.prototype.keyCheck = function(keyPressed){
     
     
 }
-
 
 JSBoilerplate.prototype.jumpControl = function(){
     var villeControl = new VilleControl();
