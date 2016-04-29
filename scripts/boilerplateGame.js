@@ -520,7 +520,6 @@ JSBoilerplate.prototype.subtraction = function(){
 
 
     while(b === a){
-	console.log("loop1")
 	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
 
