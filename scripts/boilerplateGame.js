@@ -512,6 +512,7 @@ JSBoilerplate.prototype.subtraction = function(){
     }
     else{
 	a = randomNumber2 - randomNumber1
+	self.swap(randomNumber1, randomNumber2)
     }
 
     b = a;
@@ -537,6 +538,14 @@ JSBoilerplate.prototype.subtraction = function(){
     answers = self.shuffle(answers);
     self.placeNumbers(type, randomNumber1, randomNumber2, a, answers);
 }
+
+JSBoilerplate.prototype.swap = function(a,b){
+    var t = this[a]
+    this[a] = this[b]
+    this[b] = t
+}
+
+//var tmp = this[a]; this[a] = this[b]; this[b] = tmp;
 
 
 JSBoilerplate.prototype.addition = function(){
