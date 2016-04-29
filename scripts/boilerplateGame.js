@@ -400,15 +400,23 @@ JSBoilerplate.prototype.newGame = function(){
     methods.push(self.division);
 
     var a = Math.floor(Math.random() * methods.length);
-    console.log(a);
+    console.log(a)
     switch(a){
-    case 0: self.addition();
+    case 0:
+	console.log("addition");
+	self.addition();
 	break;
-    case 1: self.subtraction();
+    case 1:
+	console.log("subtraction");
+	self.subtraction();
 	break;    
-    case 2: self.multiplication();
+    case 2:
+	console.log("multiplication");
+	self.multiplication();
 	break;
-    case 3: self.division();
+    case 3:
+	console.log("division");
+	self.division();
 	break;
     }
 
@@ -419,8 +427,8 @@ JSBoilerplate.prototype.division = function(){
     console.log("division");
     var type = '/';
     var a, b, c, d;
-    var randomNumber1 = Math.floor(Math.random() * 11);
-    var randomNumber2 = Math.floor(Math.random() * 11);
+    var randomNumber1 = Math.floor(Math.random() * 11) + 1;
+    var randomNumber2 = Math.floor(Math.random() * 11) + 1;
 
     a = randomNumber1 * randomNumber2;
     
@@ -493,25 +501,36 @@ JSBoilerplate.prototype.subtraction = function(){
     var a, b, c, d;
     var randomNumber1 = Math.floor(Math.random() * 11);
     var randomNumber2 = Math.floor(Math.random() * 11);
-    while(randomNumber2 >= randomNumber1){
+
+    while(randomNumber2 === randomNumber1){
 	randomNumber2 = Math.floor(Math.random() * 11);
     }
 
-    a = randomNumber1 - randomNumber2;
+
+    if(randomNumber1 > randomNumber2){
+	a = randomNumber1 - randomNumber2
+    }
+    else{
+	a = randomNumber2 - randomNumber1
+    }
+
     b = a;
     c = a;
     d = a
 
 
-    while(b === a && b >= 0){
+    while(b === a){
+	console.log("loop1")
 	b = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
 
     while( (c === a || c === b) && c >= 0 ){
+	console.log("loop2")
 	c = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
 
     while( (d === a || d === b || d === c) && d >= 0){
+	console.log("loop3")
 	d = Math.floor(Math.random() * 11) + Math.floor(Math.random() * 11);
     }
 
