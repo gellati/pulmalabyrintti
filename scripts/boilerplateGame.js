@@ -1,6 +1,6 @@
 // Constructor for JSBoilerplate. If you rename this, you need to rename it also in init.js
 // Take options object as a parameters. Given options override defaults
-JSBoilerplate = function(options) {
+NumberPuzzle = function(options) {
 	// Make this object visible in functions.
 	var self = this; 
 
@@ -76,7 +76,7 @@ JSBoilerplate = function(options) {
 
 
 //Starting point for the game
-JSBoilerplate.prototype.start = function() {
+NumberPuzzle.prototype.start = function() {
     var self = this; 
     self.drawGameArea();
     self.keyControl();
@@ -156,7 +156,7 @@ JSBoilerplate.prototype.start = function() {
 
 
 // moves the figure around with keys. valid keys are up, left, right, down
-JSBoilerplate.prototype.keyControl = function(){
+NumberPuzzle.prototype.keyControl = function(){
 
     var self = this;
     var container = document.querySelector(".gameArea");
@@ -213,7 +213,7 @@ JSBoilerplate.prototype.keyControl = function(){
 }
 
 
-JSBoilerplate.prototype.keyCheck = function(keyPressed){
+NumberPuzzle.prototype.keyCheck = function(keyPressed){
 
     var self = this;
     var container = document.querySelector(".gameArea");
@@ -296,7 +296,7 @@ JSBoilerplate.prototype.keyCheck = function(keyPressed){
     
 }
 
-JSBoilerplate.prototype.jumpControl = function(){
+NumberPuzzle.prototype.jumpControl = function(){
     var villeControl = new VilleControl();
 
     //villeControl.observe();
@@ -308,7 +308,7 @@ JSBoilerplate.prototype.jumpControl = function(){
 
 
 
-JSBoilerplate.prototype.drawGameArea = function(){
+NumberPuzzle.prototype.drawGameArea = function(){
 
     var self = this;
 
@@ -391,7 +391,7 @@ JSBoilerplate.prototype.drawGameArea = function(){
 
 }
 
-JSBoilerplate.prototype.newGame = function(){
+NumberPuzzle.prototype.newGame = function(){
     var self = this;
     var methods = [];
     methods.push(self.addition);
@@ -422,7 +422,7 @@ JSBoilerplate.prototype.newGame = function(){
 
 }
 
-JSBoilerplate.prototype.division = function(){
+NumberPuzzle.prototype.division = function(){
     var self = this;
     console.log("division");
     var type = '/';
@@ -460,7 +460,7 @@ JSBoilerplate.prototype.division = function(){
 }
 
 
-JSBoilerplate.prototype.multiplication = function(){
+NumberPuzzle.prototype.multiplication = function(){
     var self = this;
     var type = '*';
     var a, b, c, d;
@@ -495,7 +495,7 @@ JSBoilerplate.prototype.multiplication = function(){
 
 }
 
-JSBoilerplate.prototype.subtraction = function(){
+NumberPuzzle.prototype.subtraction = function(){
     var self = this;
     var type = '-';
     var a, b, c, d;
@@ -539,7 +539,7 @@ JSBoilerplate.prototype.subtraction = function(){
     self.placeNumbers(type, randomNumber1, randomNumber2, a, answers);
 }
 
-JSBoilerplate.prototype.swap = function(a,b){
+NumberPuzzle.prototype.swap = function(a,b){
     var t = this[a]
     this[a] = this[b]
     this[b] = t
@@ -548,7 +548,7 @@ JSBoilerplate.prototype.swap = function(a,b){
 //var tmp = this[a]; this[a] = this[b]; this[b] = tmp;
 
 
-JSBoilerplate.prototype.addition = function(){
+NumberPuzzle.prototype.addition = function(){
     var self = this;
     var type = '+';
     var a, b, c, d;
@@ -584,7 +584,7 @@ JSBoilerplate.prototype.addition = function(){
 
 }
 
-JSBoilerplate.prototype.placeNumbers = function(type, randomNumber1, randomNumber2, correctAnswer, answers){
+NumberPuzzle.prototype.placeNumbers = function(type, randomNumber1, randomNumber2, correctAnswer, answers){
     // the equation, positioning equation in the upper middle of the board    
     var questionArea = document.querySelector('.questionArea');
     questionArea.setAttribute('data-value', correctAnswer);
@@ -610,7 +610,7 @@ JSBoilerplate.prototype.placeNumbers = function(type, randomNumber1, randomNumbe
 
 
 
-JSBoilerplate.prototype.clearGame = function(){
+NumberPuzzle.prototype.clearGame = function(){
     var self = this;
     console.log("clearGame");
 
@@ -646,7 +646,7 @@ JSBoilerplate.prototype.clearGame = function(){
     
 }
 
-JSBoilerplate.prototype.finishGame = function(){
+NumberPuzzle.prototype.finishGame = function(){
     var self = this;
     $("document").delay(3000);
     
@@ -659,7 +659,7 @@ JSBoilerplate.prototype.finishGame = function(){
 // Draws the initial start screen, with a big start-button. 
 // Game starts only after user has decied to start the game. 
 // You can skip this, if you like.
-JSBoilerplate.prototype.drawStartScreen = function() {
+NumberPuzzle.prototype.drawStartScreen = function() {
 	var self = this; 
 
 	self.parent.append('<div class="startbutton">Start!</div>'); 
@@ -694,7 +694,7 @@ JSBoilerplate.prototype.drawStartScreen = function() {
 // Load the base_theme.css and set theme, if available.
 // No need to modify this, unless you want to implement themes or 
 // load external css-libraries
-JSBoilerplate.prototype.loadCss = function() {
+NumberPuzzle.prototype.loadCss = function() {
 	var self = this;
 	// remove all existing stylesheets (should not be any)
 	$("[id^=boilerpalte-style]").remove();
@@ -735,7 +735,7 @@ JSBoilerplate.prototype.loadCss = function() {
 }
 
 // Keep the game in fullscreen even on window resize
-JSBoilerplate.prototype.resize = function() {
+NumberPuzzle.prototype.resize = function() {
 	var self = this;
 	// First make sure that the outer most element is full width and height
 	$(self.options.parent).width(parseFloat($(window).width()) - parseFloat($(self.options.parent).offset().left) + 'px');
@@ -753,7 +753,7 @@ JSBoilerplate.prototype.resize = function() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Shuffle options array. Makes sure correct option is included in shuffled array
-JSBoilerplate.prototype.shuffleOptions = function(options, correct) {
+NumberPuzzle.prototype.shuffleOptions = function(options, correct) {
 	var self = this; 
 	var arr = []; 
 
@@ -777,12 +777,12 @@ JSBoilerplate.prototype.shuffleOptions = function(options, correct) {
 }
 
 // Get random int including min and max
-JSBoilerplate.prototype.randomInt = function(min, max) {
+NumberPuzzle.prototype.randomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Shuffle array
-JSBoilerplate.prototype.shuffle = function(array) {
+NumberPuzzle.prototype.shuffle = function(array) {
 
 	var currentIndex = array.length, temporaryValue, randomIndex ;
 
@@ -803,7 +803,7 @@ JSBoilerplate.prototype.shuffle = function(array) {
 }
 
 
-JSBoilerplate.prototype.CheckElementOverlap = function(el1, el2) {
+NumberPuzzle.prototype.CheckElementOverlap = function(el1, el2) {
     el1.offsetBottom = el1.offsetTop + el1.offsetHeight;
     el1.offsetRight = el1.offsetLeft + el1.offsetWidth;
     el2.offsetBottom = el2.offsetTop + el2.offsetHeight;
@@ -821,7 +821,7 @@ JSBoilerplate.prototype.CheckElementOverlap = function(el1, el2) {
 
 
 // Checks if array as given item
-JSBoilerplate.prototype.isIn = function(array, item) {
+NumberPuzzle.prototype.isIn = function(array, item) {
 	for(var i=0; i<array.length; i++) {
 		if(array[i] === item) {
 			return true;
@@ -839,7 +839,7 @@ var draw = SVG('player').size(drawing_width, drawing_height)
 var player = draw.rect(40, 20).fill('#aa00aa');
 */
 
-JSBoilerplate.prototype.keyBoardMovement = function(){
+NumberPuzzle.prototype.keyBoardMovement = function(){
     var self = this;
 
     var x, y;
@@ -878,18 +878,18 @@ JSBoilerplate.prototype.keyBoardMovement = function(){
 }
 
 
-JSBoilerplate.prototype.isCorrectGate = function(x, y){
+NumberPuzzle.prototype.isCorrectGate = function(x, y){
     
     return true;
 }
 
 
-JSBoilerplate.prototype.isWrongGate = function(x, y){
+NumberPuzzle.prototype.isWrongGate = function(x, y){
     return true;
 }
 
 
-JSBoilerplate.prototype.checkCursorElement = function(){
+NumberPuzzle.prototype.checkCursorElement = function(){
     var self = this;
 
     var startX, startY, endX, endY, name;
@@ -932,7 +932,7 @@ JSBoilerplate.prototype.checkCursorElement = function(){
 
 }
 
-JSBoilerplate.prototype.moveElementAnimation = function(startX, startY, endX, endY){
+NumberPuzzle.prototype.moveElementAnimation = function(startX, startY, endX, endY){
     console.log("moveElementAnimation " + startX + "," + startY + " -> " + endX + "," + endY);
     var dX = startX - endX + 200;
     var dY = startY - endY - 20;
@@ -942,12 +942,12 @@ JSBoilerplate.prototype.moveElementAnimation = function(startX, startY, endX, en
 }
 
 
-JSBoilerplate.prototype.moveElementCss = function(name, xpos, ypos){
+NumberPuzzle.prototype.moveElementCss = function(name, xpos, ypos){
     console.log("moveElement " + xpos + " " + ypos);
     $(".playerFigure").css({'left': 'xpos' + 'px', 'top': 'ypos' + 'px'});
 }
 
-JSBoilerplate.prototype.moveElementInterval = function(startX, startY, endX, endY){
+NumberPuzzle.prototype.moveElementInterval = function(startX, startY, endX, endY){
     console.log("moveElementInterval " + startX + "," + startY + " -> " + endX + "," + endY);
     var xp = 0, yp = 0;
     xp = startX;
@@ -960,7 +960,7 @@ JSBoilerplate.prototype.moveElementInterval = function(startX, startY, endX, end
     }, 30);
 }
 
-JSBoilerplate.prototype.shuffle = function(array){
+NumberPuzzle.prototype.shuffle = function(array){
 
     let counter = array.length;
     
@@ -982,7 +982,7 @@ JSBoilerplate.prototype.shuffle = function(array){
     
 }
 
-JSBoilerplate.prototype.clickListener = function(){
+NumberPuzzle.prototype.clickListener = function(){
     var self = this;
     //    function getClickPosition(e) {
     var container = document.querySelector(".gamearea");    
@@ -1053,7 +1053,7 @@ JSBoilerplate.prototype.clickListener = function(){
 }
 
 
-JSBoilerplate.prototype.getPosition = function(el){
+NumberPuzzle.prototype.getPosition = function(el){
     var xPos = 0;
     var yPos = 0;
     while (el) {
@@ -1083,7 +1083,7 @@ JSBoilerplate.prototype.getPosition = function(el){
 }
 
 
-JSBoilerplate.prototype.moveElementKirupa = function(startX, startY, endX, endY){
+NumberPuzzle.prototype.moveElementKirupa = function(startX, startY, endX, endY){
     self = this;
 
     

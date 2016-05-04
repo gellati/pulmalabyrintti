@@ -48,7 +48,7 @@ function startGame() {
 
 	// crate new instance of the game. 
 	// If you rename the JSBoilerplate in the game.js, you must rename it here too. 
-	var game = new JSBoilerplate(options);
+	var game = new NumberPuzzle(options);
 
 }
 
